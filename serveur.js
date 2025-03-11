@@ -131,7 +131,7 @@ serv.get('/page/', (req, res) => {
         console.log(req.session.useremail);
         // 🔸 Récupérer toutes les commandes
 
-        const query = 'SELECT * FROM commandes WHERE client_id=? ORDER BY commande_id DESC LIMIT 5';
+        const query = 'SELECT * FROM commandes WHERE client_id=? ORDER BY id DESC LIMIT 5';
         const query2 = 'SELECT * FROM reservations WHERE client_id=?';
         let results2
         db.query(query, [req.session.userId], (err, results1) => {
