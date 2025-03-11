@@ -23,10 +23,10 @@
             
             <td>
                 <% if (commande2.statut==="en cours") { %>
-                    <button class="btn btn-success btn-sm"onclick="valider('<%= commande2.commande_id %>')">Valider</button>
-                    <button class="btn btn-primary btn-sm" onclick="annuler('<%= commande2.commande_id %>')" >annuler</button>
+                    <button class="btn btn-success btn-sm"onclick="valider('<%= commande2.id %>')">Valider</button>
+                    <button class="btn btn-primary btn-sm" onclick="annuler('<%= commande2.id %>')" >annuler</button>
                 <%}%>
-                <button class="btn btn-danger btn-sm" onclick="Supprimer('<%= commande2.commande_id %>')">Supprimer</button>
+                <button class="btn btn-danger btn-sm" onclick="Supprimer('<%= commande2.id %>')">Supprimer</button>
             </td>
            
         </tr>

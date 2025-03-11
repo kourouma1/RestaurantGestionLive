@@ -16,6 +16,9 @@ const modules = require(modulePath);
 serv.set("view engine", "ejs");
 serv.set('views', __dirname + '/IHM');
 
+
+
+
 //definition du moteur d'affichage
 
 
@@ -38,6 +41,13 @@ serv.use((req, res, next) => {
     next();
 });
 
+
+// Middleware pour stocker les informations de session dans req.session
+serv.use((req, res, next) => {
+    console.log('Session actuelle:', req.session);
+    next();
+});
+
 // Middleware pour gérer les requêtes CORS
 serv.use(express.json());
 serv.use(cors());
@@ -46,6 +56,12 @@ serv.use(cors());
 
 serv.use(bodyParser.urlencoded({ extended: false }));
 serv.use(express.static('IHM'));
+
+
+
+// midolware pour la recuperation des donnee venan d'une page a partie d'un formulaire
+
+serv.use(bodyParser.urlencoded({ extended: false }));
 
 // les options de Connexion à la base de données MySQL
 const db = mysql.createConnection({
@@ -69,11 +85,11 @@ serv.get('/', (req, res) => {
     res.status(200).render('pages/acceuil', { message: "" })
 });
 
-//================================================================================================================================
+//==========================================================================================================================================================
 
 
 
-//=================GESTION COMPLETE DU COTE CLIEN==========================//
+//=================GESTION COMPLETE DU COTE ADMIN==========================//
 
 serv.get('/accueil', (req, res) => {
     res.status(301).redirect('/')
@@ -257,7 +273,339 @@ serv.post('/admin', async (req, res) => {
     });
 });
 
-////fin
+////===================================================fin
+
+
+//==========admin clients===============///
+
+
+serv.get('/admin/clients', (req, res) => {
+    const sql = 'SELECT * FROM clients'
+
+    db.query(sql, (err, val1) => {
+        if (err) {
+            console.log("erreur de recuperation des clients")
+        }
+        //console.log(val1);
+        res.status(200).render('admin/clients', { val1 })
+    })
+})
+
+
+//pour lactualisation automatique
+serv.get('/client/act', (req,res)=>{
+    const sql = 'SELECT * FROM clients'
+
+    db.query(sql, (err, val1) => {
+        if (err) {
+            console.log("erreur de recuperation des clients")
+        }
+        ///console.log(val1);
+        res.status(200).render('admin/sync/tabclient', { val1 })
+    })
+})
+
+
+//==================gestion page client cote admin===============//
+serv.post('/admin/clients/add',(req,res) =>{
+    //recuperation des donnee depuis le formulaire
+    const { nom, email, phone, residence } = req.body;
+    const query = 'INSERT INTO clients (nom, email, telephone, adresse) VALUES (?, ?, ?, ?)'
+    db.query(query, [nom,email,phone,residence], async (err, results) => {
+        if (err) {
+            console.log("erreur d'ajout ");
+            return res.status(500).render('/pages/erreur');
+        }else{
+            console.log("ajout effectuer !");
+            return res.status(200).redirect('/admin/clients')
+           
+            
+        }
+    })
+})
+
+
+
+// Route DELETE pour supprimer un commande
+serv.delete("/cmmds/:id", (req, res) => {
+    const commandeId = req.params.id;
+    console.log(commandeId);
+    
+    const sql = "DELETE FROM commandes WHERE id = ?";
+    
+    db.query(sql, [commandeId], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la suppression:", err);
+        res.status(500).json({ message: "Erreur serveur" });
+      } else {
+        res.status(202).json({routeRacine : '/page/'});
+        console.log("suppression effectuer "+commandeId);
+          
+      }
+    });
+  });
+
+
+//==================================fin gestion clients ===================================================///
+
+
+
+
+//============== Les actions delete,modification du cote admin Commande================
+
+/===================Gestion des commandes administrateur================//
+serv.get('/admin/commande', (req, res) => {
+
+         // 🔸 Récupérer toutes les commandes
+
+    const query = `
+    SELECT 
+        cl.nom,
+        cl.telephone,
+        c.plats,
+        c.quantite,
+        c.garniture,
+        c.date_commande,
+        c.id,
+        c.statut
+       
+        
+    FROM commandes c
+    JOIN clients cl ON c.client_id = cl.id
+    ;
+`
+db.query(query, (err, results1) => {
+    if (err) {
+        return res.status(500).json({ error: "Erreur lors de la récupération des reservations" });
+    }
+    return res.status(200).render('admin/commande', { results1 })
+     
+})
+
+   
+});
+
+
+
+serv.get('/commande/act', (req, res) => {
+
+    // 🔸 Récupérer toutes les commandes
+
+const query = `
+SELECT 
+   cl.nom,
+   cl.telephone,
+   c.plats,
+   c.quantite,
+   c.garniture,
+   c.date_commande,
+   c.id,
+   c.statut
+  
+   
+FROM commandes c
+JOIN clients cl ON c.client_id = cl.id
+;
+`
+db.query(query, (err, results1) => {
+if (err) {
+   return res.status(500).json({ error: "Erreur lors de la récupération des reservations" });
+}
+return res.status(200).render('admin/sync/tabcom', { results1 })
+
+})
+
+
+});
+
+
+///============== Les actions delete,modification du cote admin ================
+
+// Route pour valider une commande
+serv.delete("/im/:id", (req, res) => {
+    const commandeId = req.params.id;
+    console.log(commandeId);
+    
+    const sql = "UPDATE commandes SET statut = ? WHERE id=?";
+    
+    db.query(sql, ["livrer",commandeId], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la validation:", err);
+        res.status(500).json({ message: "Erreur serveur" });
+      } else {
+        res.status(202).json({routeRacine : '/admin/commande'});
+        
+        
+      }
+    });
+  });
+  
+
+  // Route pour supprimer  une commande cote admin
+serv.delete("/is/:id", (req, res) => {
+    const commandeId = req.params.id;
+    console.log(commandeId);
+    
+    const sql = "DELETE FROM commandes  WHERE id=?";
+    
+    db.query(sql, [commandeId], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la l'annulation:", err);
+        res.status(500).json({ message: "Erreur serveur" });
+      } else {
+        res.status(202).json({routeRacine : '/admin/commande'});
+        console.log("validation effectuer "+commandeId);
+        
+      }
+    });
+  });
+
+
+  
+  // Route pour annuler une commande cote admin
+serv.delete("/ia/:id", (req, res) => {
+    const commandeId = req.params.id;
+    console.log(commandeId);
+    
+    const sql = "UPDATE commandes SET statut = ? WHERE id=?";
+    
+    db.query(sql, ["annulée",commandeId], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la Suppression:", err);
+        res.status(500).json({ message: "Erreur serveur" });
+      } else {
+        res.status(202).json({routeRacine : '/admin/commande'});
+        console.log("validation effectuer "+commandeId);
+        
+      }
+    });
+  });
+//=============fin=========================//
+
+
+
+//===============================================fin=================================================//
+
+
+//=======================Le menu de propos ================================================///
+serv.get('/admin/apropos', (req, res) => {
+    res.status(200).render('admin/apropos')
+});
+
+//=============fin==========================================================//
+
+
+//======================= Gestion des reservations admin====================///
+
+serv.get('/admin/reservation', (req, res) => {
+    res.status(200).render('admin/reservation')
+});
+
+//====================gestion des plat===========================================================//
+serv.get('/admin/plat', (req, res) => {
+    res.status(200).render('admin/plats')
+});
+
+
+//===========================================================gestion du menu animationDirection: 
+
+serv.get('/admin/menu',(req,res) =>{
+    res.status(200).render('admin/menu')
+})
+
+serv.get('/commande/act',(req,res) =>{
+    // 🔸 Récupérer toutes les commandes
+
+    const query = `
+    SELECT 
+        cl.nom,
+        cl.telephone,
+        c.plats,
+        c.Quantite,
+        c.garniture,
+        c.date_commande,
+        c.commande_id,
+        c.statut
+       
+        
+    FROM commandes c
+    JOIN clients cl ON c.client_id = cl.client_id
+    ;
+`
+db.query(query, (err, results1) => {
+    if (err) {
+        return res.status(500).json({ error: "Erreur lors de la récupération des reservations" });
+    }
+    return res.status(200).render('admin/sync/tabcom', { results1 })
+     
+})
+
+})
+
+
+
+
+
+
+
+
+//=================================================la route pour l'accueil admin==============================//
+
+
+serv.get('/admin', (req, res) => {
+
+    //=====================
+
+    // 🔸 Récupérer toutes les commandes
+
+    const query = `
+        SELECT 
+            c.id ,
+            c.date_commande,
+            c.statut,
+            c.plats,
+            c.quantite,
+            c.garniture,
+            cl.id ,
+            cl.nom
+        FROM commandes c
+        JOIN clients cl ON c.client_id  = cl.id
+        ORDER BY c.date_commande DESC LIMIT 10;
+    `
+    const query2 = `
+             SELECT 
+                 r.id,
+                 r.date_reservation,
+                 r.statut,
+                 r.nombre_personnes,
+                 cl.id ,
+                 cl.nom,
+                 cl.email,
+                 cl.telephone
+             FROM reservations r
+             JOIN clients cl ON r.client_id = cl.id
+             ORDER BY r.date_reservation DESC LIMIT 10;
+         `;
+    let results2
+    db.query(query, (err, results1) => {
+        if (err) {
+            return res.status(500).json({ error: "Erreur lors de la récupération des commandes" });
+        }
+        let results = results1
+        //=============recupeeration===================//
+        db.query(query2, (err, results1) => {
+            if (err) {
+                return res.status(500).json({ error: "Erreur lors de la récupération des reservations" });
+            }
+            results2 = results1
+            return res.status(200).render('admin/accuille', { results, results2 })
+
+        })
+
+    })
+    //=====================
+    //res.status(200).render('admin/accuille')
+})
 
 
 

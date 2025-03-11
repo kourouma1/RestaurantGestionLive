@@ -61,32 +61,15 @@
 
         <h2 class="text-center">Gestion des Commandes</h2>
         <div class="row-cols-1">
-            <a href="#com" class="btn btn-success mb-3">Ajouter une Commande</a>
+           
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Rechercher une commande" aria-label="Rechercher une commande">
                 <button class="btn btn-primary" type="button">Rechercher</button>
               </div>
               
         </div>
-        <table class="table table-striped mt-4 ">
-            
-            <thead>
-                <tr>
-                    <th class="th bg-black text-light">Nom</th>
-                    <th class="th bg-black text-light">Telephone</th>
-                    <th class="th bg-black text-light">Plat</th>
-                    <th class="th bg-black text-light">Quantite</th>
-                    <th class="th bg-black text-light">Date</th>
-                    <th class="th bg-black text-light">Etat</th>
-                    <th class="th bg-black text-light">Actions</th>
-                </tr>
-            </thead>
-            <tbody id ="tb">
-                
-            </tbody>
+       
         
-        </table>
-        <hr>
 
        
         <form>
@@ -126,17 +109,34 @@
           </form>
           
 
+          <hr>
+
+          <table class="table table-striped mt-4 ">
+            
+            <thead>
+                <tr>
+                    <th class="th bg-black text-light">Nom</th>
+                    <th class="th bg-black text-light">Telephone</th>
+                    <th class="th bg-black text-light">Plat</th>
+                    <th class="th bg-black text-light">Quantite</th>
+                    <th class="th bg-black text-light">Date</th>
+                    <th class="th bg-black text-light">Etat</th>
+                    <th class="th bg-black text-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody id ="tb">
+                
+            </tbody>
+        
+        </table>
+
 
 
     </div>
 </div>
-<script src="../assets/js/bootstrap.bundle.js"></script>
-<script src="../assets/admin/js/cmmun.js"></script>
-<script src="../assets/js/ajax.js"></script>
 
 <script>
     //pour lenvoi de id du commande a valider
-
   function valider(id) {
     fetch("/im/"+ id,{method: "DELETE"})
     .then(response => response.json())
@@ -160,7 +160,7 @@
     .catch(error => console.log("Erreur:", error))
   }
   
-    //pour lenvoi de id du commande a suprimer
+    //pour lenvoi de id du commande pour annuler
     function annuler(id) {
     fetch("/ia/"+ id,{method: "DELETE"})
     .then(response => response.json())
@@ -173,6 +173,14 @@
   }
 
 </script>
+
+
+
+<script src="../assets/js/bootstrap.bundle.js"></script>
+<script src="../assets/admin/js/cmmun.js"></script>
+<script src="../assets/js/ajax.js"></script>
+
+
 
 </body>
 </html>
