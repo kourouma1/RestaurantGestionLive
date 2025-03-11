@@ -5,18 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Mon Restaurant</title>
     <link rel="stylesheet" href="../assets/css/accueil.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   
     
+</head>
+<style>
+    .navbar {
+        transition: background 0.3s ease-in-out;
+    }
+    .navbar.scrolled {
+        background: black;
+    }
+    .navbar-brand {
+        font-weight: bold;
+    }
+    .navbar-nav .nav-link {
+        transition: color 0.3s ease-in-out;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #f39c12;
+    }
+</style>
 </head>
 <body>
     <!-- Barre de navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-logo">Mon Restaurant</a>
-            <ul class="navbar-menu">
-                <li><a href="#apropos">À Propos</a></li>
-                <li><a href="#" id="open-modal">Login/Inscription</a></li>
-                <li><a href="/admin/login">Espace admin</a></li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mon Restaurant</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À Propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="open-modal">Login/Inscription</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/login">Espace admin</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -26,9 +51,9 @@
             <source src="assets/video/pub (1).mp4" type="video/mp4">
             
         </video>
-        <div class="hero-content">
-            <h1>Bienvenue Chez Restaurant TECHK</h1>
-            <p>Découvrez des saveurs uniques et des plats préparés avec amour.</p>
+        <div class="content">
+            <h1 class="text-warning">Bienvenue Chez Restaurant TECHK</h1>
+            <p class="text-warning">Découvrez des saveurs uniques et des plats préparés avec amour.</p>
         </div>
     </section>
 
@@ -55,13 +80,13 @@
     </section>
 
             <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
+    <div id="modal" class="modal" >
+        <div class="modal-content bg-dark">
             <span class="close-modal">&times;</span>
             
             <!-- Onglets pour basculer entre inscription et connexion -->
             <div class="tabs">
-                <button class="tab-link active" data-tab="login">Connexion</button>
+                <button class="tab-link active text-warning" data-tab="login">Connexion</button>
                 <button class="tab-link" data-tab="register">Inscription</button>
             </div>
 
@@ -121,6 +146,7 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <script > 
