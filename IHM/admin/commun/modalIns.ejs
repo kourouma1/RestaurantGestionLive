@@ -1,0 +1,38 @@
+<!-- Modal d'Inscription -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel">Inscription Client</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire d'inscription -->
+          <form action="/inscription" method="post">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Nom Complet</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Entrez votre nom complet" required>
+            </div>
+            <div class="mb-3">
+              <label for="emailSignup" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="emailSignup" placeholder="Entrez votre email" required>
+            </div>
+            <div class="mb-3">
+              <label for="passwordSignup" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" name="password" id="passwordSignup" placeholder="Entrez votre mot de passe" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="termsConditions">
+              <label class="form-check-label" for="termsConditions">Accepter les conditions d'utilisation</label>
+            </div>
+            <button type="submit" class="btn btn-success w-100">S'inscrire</button>
+          </form>
+         
+        </div>
+      </div>
+    </div>
+  </div>

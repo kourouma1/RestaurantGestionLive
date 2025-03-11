@@ -1,0 +1,36 @@
+<% if (results1.length === 0) { %>
+    <tr>
+        <td colspan="6">Aucune commande en cours</td>
+    </tr>
+<% } else { %>
+    <% results1.forEach(function(commande2) { %>
+        <tr>
+           
+            <td><%= commande2.nom %></td>
+            <th><%= commande2.telephone %></th>
+            <td><%= commande2.plats %></td>
+            <th><%= commande2.Quantite %></th>
+            <td><%= commande2.date_commande %></td>
+            
+            <% if (commande2.statut=="livrer") {%>
+                <td><span class="badge bg-success badge-animated"><%= commande2.statut %></span></td>
+
+                <% }else if (commande2.statut=="annulée") {%>
+                    <td><span class="badge bg-danger badge-animated"><%= commande2.statut %></span></td>
+                <% } else {%>
+                <td><span class="badge bg-warning badge-animated"><%= commande2.statut %></span></td>
+            <% } %>
+            
+            <td>
+                <% if (commande2.statut==="en cours") { %>
+                    <button class="btn btn-success btn-sm"onclick="valider('<%= commande2.commande_id %>')">Valider</button>
+                    <button class="btn btn-primary btn-sm" onclick="annuler('<%= commande2.commande_id %>')" >annuler</button>
+                <%}%>
+                <button class="btn btn-danger btn-sm" onclick="Supprimer('<%= commande2.commande_id %>')">Supprimer</button>
+            </td>
+           
+        </tr>
+    <% }); %>
+<% } %>
+
+

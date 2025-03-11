@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Restaurant</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#searchClient").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#clientTable tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <style>
+        .badge-animated {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar animate__animated animate__fadeInLeft">
+        <h3 class="text-center">Administration</h3>
+        <a href="/admin">Accueil</a>
+        <a  href="/admin/commande">Commandes</a>
+        <a href="/admin/reservation">Reservations</a>
+        <a href="/admin/plat">Plats</a>
+        <a href="/admin/clients">Clients</a>
+        <a href="/admin/users">Utilisateurs</a>
+        <a href="/admin/menu">Definir Le Menu Du Jours</a>
+        <a href="/admin/apropos">Apropos</a>
+    </div>
+
+
+
+ 
+
+<!-- CSS pour l'animation d'apparition -->
+  

@@ -1,0 +1,178 @@
+<%- include('commun/header') %>
+
+    <div class="main-content">
+        <div class="container-fluid">
+            <%- include('commun/navbar') %>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">Statistique</h1>
+                <button class="btn btn-danger">Déconnexion</button>
+            </div>
+                <hr>
+            <!-- Overview Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 ">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Commandes</h5>
+                        <p class="card-text text-light">35</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Produits</h5>
+                        <p class="card-text text-light">120</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Utilisateurs</h5>
+                        <p class="card-text text-light">50</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Revenus</h5>
+                        <p class="card-text text-light">4.560</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<hr>
+
+        <h2 class="text-center">Gestion des Commandes</h2>
+        <div class="row-cols-1">
+            <a href="#com" class="btn btn-success mb-3">Ajouter une Commande</a>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Rechercher une commande" aria-label="Rechercher une commande">
+                <button class="btn btn-primary" type="button">Rechercher</button>
+              </div>
+              
+        </div>
+        <table class="table table-striped mt-4 ">
+            
+            <thead>
+                <tr>
+                    <th class="th bg-black text-light">Nom</th>
+                    <th class="th bg-black text-light">Telephone</th>
+                    <th class="th bg-black text-light">Plat</th>
+                    <th class="th bg-black text-light">Quantite</th>
+                    <th class="th bg-black text-light">Date</th>
+                    <th class="th bg-black text-light">Etat</th>
+                    <th class="th bg-black text-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody id ="tb">
+                
+            </tbody>
+        
+        </table>
+        <hr>
+
+       
+        <form>
+            <h4 class="mb-4 text-center" id="com">Paiement de Commande</h4>
+          
+            <div class="mb-3">
+              <label for="nomClient" class="form-label">Nom du Client</label>
+              <input type="text" class="form-control" id="nomClient" placeholder="Entrez le nom du client" required>
+            </div>
+          
+            <div class="mb-3">
+              <label for="numeroCommande" class="form-label">Numéro de Commande</label>
+              <input type="text" class="form-control" id="numeroCommande" placeholder="Entrez le numéro de commande" required>
+            </div>
+          
+            <div class="mb-3">
+              <label for="montant" class="form-label">Montant à Payer</label>
+              <input type="number" class="form-control" id="montant" placeholder="Entrez le montant" required>
+            </div>
+          
+            <div class="mb-3">
+              <label for="methodePaiement" class="form-label">Méthode de Paiement</label>
+              <select class="form-select" id="methodePaiement" required>
+                <option value="" selected disabled>Choisir une méthode</option>
+                <option value="carte">Carte Bancaire</option>
+                <option value="mobile">Paiement Mobile</option>
+                <option value="cash">Espèces</option>
+              </select>
+            </div>
+          
+            <div class="mb-3">
+              <label for="datePaiement" class="form-label">Date de Paiement</label>
+              <input type="date" class="form-control" id="datePaiement" required>
+            </div>
+          
+            <button type="submit" class="btn btn-success w-100">Valider le Paiement</button>
+          </form>
+          
+
+
+
+    </div>
+</div>
+<script src="../assets/js/bootstrap.bundle.js"></script>
+<script src="../assets/admin/js/cmmun.js"></script>
+<script src="../assets/js/ajax.js"></script>
+
+<script>
+    //pour lenvoi de id du commande a valider
+
+  function valider(id) {
+    fetch("/im/"+ id,{method: "DELETE"})
+    .then(response => response.json())
+    .then((data) => {
+        window.location.href= data.routeRacine 
+        console.log("Réponse serveur :", data);
+        
+        })
+    .catch(error => console.log("Erreur:", error))
+  }
+
+  //pour lenvoi de id du commande a suprimer
+  function Supprimer(id) {
+    fetch("/is/"+ id,{method: "DELETE"})
+    .then(response => response.json())
+    .then((data) => {
+        window.location.href= data.routeRacine 
+        console.log("Réponse serveur :", data);
+        
+        })
+    .catch(error => console.log("Erreur:", error))
+  }
+  
+    //pour lenvoi de id du commande a suprimer
+    function annuler(id) {
+    fetch("/ia/"+ id,{method: "DELETE"})
+    .then(response => response.json())
+    .then((data) => {
+        window.location.href= data.routeRacine 
+        console.log("Réponse serveur :", data);
+        
+        })
+    .catch(error => console.log("Erreur:", error))
+  }
+
+</script>
+
+</body>
+</html>

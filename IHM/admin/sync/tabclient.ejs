@@ -1,0 +1,13 @@
+<% for(i=0;i<val1.length;i++){ %>
+    <tr>
+        <td><%= val1[i].client_id %></td>
+        <td><%= val1[i].nom %></td>
+        <td><%= val1[i].email %></td>
+        <td><%= val1[i].telephone %></td>
+        <td><%= val1[i].adresse %></td>
+        <td>
+            <button class="btn btn-warning">Modifier</button>
+            <button class="btn btn-danger">Supprimer</button>
+        </td>
+    </tr>
+<% } %>

@@ -1,0 +1,204 @@
+<%- include('commun/header') %>
+ 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <%- include('commun/navbar') %>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">Tableau de Bord</h1>
+                <button class="btn btn-danger">Déconnexion</button>
+            </div>
+<hr>
+            <!-- Overview Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 ">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Commandes</h5>
+                        <p class="card-text text-light">35</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Produits</h5>
+                        <p class="card-text text-light">120</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Utilisateurs</h5>
+                        <p class="card-text text-light">50</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Revenus</h5>
+                        <p class="card-text text-light">4.560</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+<hr>
+            <!-- Orders Table -->
+            <div id="orders" class="mb-4">
+                <h2 class="h5 mb-3">Dernières Commandes</h2>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Plats</th>
+                            <th>Quantité</th>
+                            <th>Garniture</th>
+                            <th>Etat</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                           <!-- Exemples de Réservations -->
+                           <% if (results.length === 0) { %>
+                            <tr>
+                                <td colspan="6">Aucune commande en cours</td>
+                            </tr>
+                        <% } else { %>
+                            <% results.forEach(function(commande) { %>
+                                <tr>
+                                    <td><%= commande.commande_id %></td>
+                                    <td><%= commande.nom %></td>
+                                    <td><%= commande.plats %></td>
+                                    <td><%= commande.Quantite %></td>
+                                    <td><%= commande.garniture %></td>
+                                    <% if (commande.statut=='annulée') {%>
+                                        <td class=" text-bg-danger"><%= commande.statut %></td>
+                                    <%}else{ %>
+                                        <td class=" text-bg-warning"><%= commande.statut %></td>
+                                        <% } %>
+                                    <td><%= commande.date_commande %></td>
+                                    
+                                   
+                                </tr>
+                            <% }); %>
+                        <% } %>
+                        
+                    
+                    </tbody>
+                </table>
+            </div>
+                 <!-- Reservation Table -->
+    <div id="orders" class="mb-4">
+        <h2 class="h5 mb-3">Dernières Reservations</h2>
+        <table class="table table-hover">
+            <thead class="table-dark ">
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Tel</th>
+                    <th>Date de Reservation</th>
+                    <th>Nb Personne</th>
+                    <th>Statut</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <% if (results2.length === 0) { %>
+                    <tr>
+                        <td colspan="6">Aucune commande en cours</td>
+                    </tr>
+                <% } else { %>
+                    <% results2.forEach(function(commande2) { %>
+                        <tr>
+                            <td><%= commande2.reservation_id %></td>
+                            <td><%= commande2.nom %></td>
+                            <td><%= commande2.email %></td>
+                            <th><%= commande2.telephone %></th>
+                            <td><%= commande2.date_reservation %></td>
+                            <th><%= commande2.nombre_personnes %></th>
+                            <td><%= commande2.statut %></td>
+                            
+                           
+                        </tr>
+                    <% }); %>
+                <% } %>
+                
+            </tbody>
+        </table>
+    </div>
+
+
+    
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<!-- Modal d'Inscription -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel">Inscription Client</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire d'inscription -->
+          <form action="/inscription" method="post">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Nom Complet</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Entrez votre nom complet" required>
+            </div>
+            <div class="mb-3">
+              <label for="emailSignup" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="emailSignup" placeholder="Entrez votre email" required>
+            </div>
+            <div class="mb-3">
+              <label for="passwordSignup" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" name="password" id="passwordSignup" placeholder="Entrez votre mot de passe" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="termsConditions">
+              <label class="form-check-label" for="termsConditions">Accepter les conditions d'utilisation</label>
+            </div>
+            <button type="submit" class="btn btn-success w-100">S'inscrire</button>
+          </form>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<% include('commun/footer') %>
+    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../assets/admin/js/cmmun.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<%- include('commun/header') %>
+
+<style>
+    .img{
+        width: 288px;
+        height: 230px;
+    }
+</style>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="container-fluid">
+        <%- include('commun/navbar') %>
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Tableau de Bord</h1>
+            <button class="btn btn-danger">Déconnexion</button>
+        </div>
+<hr>
+        <!-- Overview Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 ">
+            <div class="card text-center animate__animated animate__zoomIn bg-black">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Commandes</h5>
+                    <p class="card-text text-light">35</p>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center animate__animated animate__zoomIn bg-black">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Produits</h5>
+                    <p class="card-text text-light">120</p>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center animate__animated animate__zoomIn bg-black">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Utilisateurs</h5>
+                    <p class="card-text text-light">50</p>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center animate__animated animate__zoomIn bg-success">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Revenus</h5>
+                    <p class="card-text text-light">4.560</p>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+<hr>
+
+<div class="container px-4 text-center">
+    <div class="row gx-5">
+
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="../assets/img/event (3).jfif" class="card-img-top img" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-danger">Supprimer</a>
+            </div>
+          </div>
+      </div>
+
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="../assets/img/event (4).jfif" class="card-img-top img" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-danger">Supprimer</a>
+            </div>
+          </div>
+      </div>
+
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="../assets/img/event (2).jfif" class="card-img-top img" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-danger">Supprimer</a>
+            </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+<hr>  
+  
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Définir le Menu du Jour</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <div class="mb-3">
+                    <label for="nomPlat" class="form-label">Nom du Plat</label>
+                    <input type="text" class="form-control" id="nomPlat" placeholder="Entrez le nom du plat" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionPlat" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionPlat" rows="3" placeholder="Décrivez le plat" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="prixPlat" class="form-label">Prix</label>
+                    <input type="number" class="form-control" id="prixPlat" placeholder="Entrez le prix" required>
+                </div>
+                <div class="mb-3">
+                    <label for="imagePlat" class="form-label">Image du Plat</label>
+                    <input type="file" class="form-control" id="imagePlat">
+                </div>
+                <button type="submit" class="btn btn-success w-100">Enregistrer</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-4">Historique des Menus</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom du Plat</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Exemple Plat 1</td>
+                        <td>Délicieux plat avec des épices</td>
+                        <td>15000</td>
+                    </tr>
+                    <tr>
+                        <td>Exemple Plat 2</td>
+                        <td>Un plat traditionnel savoureux</td>
+                        <td>12000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

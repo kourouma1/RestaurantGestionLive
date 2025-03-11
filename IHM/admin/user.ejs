@@ -1,0 +1,101 @@
+<%- include('commun/header') %>
+
+    <div class="main-content">
+        <div class="container-fluid ">
+            <%- include('commun/navbar') %>
+
+            <!-- Header -->
+        <div class="d-flex  justify-content-between align-items-center mb-4">
+            <h1 class="h3">Statistique</h1>
+            <button class="btn btn-danger">Déconnexion</button>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 ">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Commandes</h5>
+                        <p class="card-text text-light">35</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Produits</h5>
+                        <p class="card-text text-light">120</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Utilisateurs</h5>
+                        <p class="card-text text-light">50</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Revenus</h5>
+                        <p class="card-text text-light">4.560</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+        <h2 class="text-center mt-5">Gestion des Utilisateurs</h2>
+        <div class="row-cols-1">
+            <button class="btn btn-success mb-3">Ajouter un Utilisateur</button>
+            <input type="text" id="searchClient" class="form-control mb-3" placeholder="Rechercher un client...">
+       
+        </div>
+        
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Genre</th>
+                    <th>Mots de passe</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jean Dupont</td>
+                    <td>jean.dupont@example.com</td>
+                    <td>+33 6 12 34 56 78</td>
+                    <td>Homme</td>
+                    <td>kdsjdflsjfkslfs</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Modifier</button>
+                        <button class="btn btn-danger btn-sm">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="../assets/js/bootstrap.bundle.js"></script>
+<script src="../assets/admin/js/cmmun.js"></script>
+</body>
+</html>

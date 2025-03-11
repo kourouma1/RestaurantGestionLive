@@ -187,16 +187,88 @@ serv.post('/ins', async (req, res) => {
 });
 
 //===================================================================
+//route pour le formulaire de connexion admin
+serv.get('/admin/login', (req, res) => {
+    res.status(200).render('admin/login',{message : ''})
+});
+
+
+// Route pour traiter la soumission du formulaire de connection
+serv.post('/admin', async (req, res) => {
+    const { email, password } = req.body;
+
+
+    // Requête SQL pour vérifier les informations de connexion
+    const query = 'SELECT * FROM users WHERE email = ? ';
+    db.query(query, [email], async (err, results) => {
+        if (err) {
+            return res.status(500).send('Erreur du serveur');
+        }
+        if (results.length > 0) {
+            const user = results[0]
+            const isMatch = await bcrypt.compare(password, user.password)
+            if (isMatch) {
+
+                req.session.userIdadmin = user.IDuser
+
+                if (req.session.userIdadmin) {
+
+                   
+                    // 🔸 Récupérer toutes les commandes======================//
+
+                    const query = 'SELECT * FROM commandes ORDER BY id DESC LIMIT 10';
+                    const query2 = 'SELECT * FROM reservations ORDER BY id DESC LIMIT 10';
+                    let results2
+                    db.query(query, [req.session.userId], (err, results1) => {
+                        if (err) {
+                            return res.status(500).json({ error: "Erreur lors de la récupération des commandes" });
+                        }
+                        let results = results1
+                        //=============recupeeration=========================//
+                        db.query(query2, [req.session.userId], (err, results2) => {
+                            if (err) {
+                                return res.status(500).json({ error: "Erreur lors de la récupération des reservations" });
+                            }
+                            results2 = results2
+                            return res.status(200).render('admin/index', { results, results2 })
+
+                        })
+
+                    })
+
+
+                } else {
+                    console.log('non autoriser raison de session vide');
+                    res.status(301).render('admin/login', { message: "Infraction !" })
+                }
+            } else {
+                console.log('Mots de passe Incorrect !')
+                res.status(301).render('admin/login', { message: "mots de passe incorrect !" })
+            }
+
+        } else {
+            res.status(301).render('admin/login', { message: "mots de passe incorrect !" })
+            console.log("Email ou mot de passe incorrect")
+            console.log(email)
 
 
 
-//======================FIN DE LA GESTION COTE CLIENT=============================///
+        }
+    });
+});
+
+////fin
+
+
+
+
+//======================FIN DE LA GESTION COTE ADMIN=============================///
 
 
 /*
 
 
-DEBUT DE LA GESTION COTE ADMINISTRATION 
+DEBUT DE LA GESTION COTE client
 
 
 
@@ -288,6 +360,27 @@ serv.post('/res', async (req, res) => {
 
 
 });
+
+
+// Route DELETE pour supprimer un client
+serv.delete("/cmmds/:id", (req, res) => {
+    const commandeId = req.params.id;
+    console.log(commandeId);
+    
+    const sql = "DELETE FROM commandes WHERE id = ?";
+    
+    db.query(sql, [commandeId], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la suppression:", err);
+        res.status(500).json({ message: "Erreur serveur" });
+      } else {
+        res.status(202).json({routeRacine : '/page/'});
+        console.log("suppression effectuer "+commandeId);
+          
+      }
+    });
+  });
+
 
 ////=========================FIN DE LA GESTION ADMIN===================================////
 

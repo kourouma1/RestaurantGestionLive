@@ -1,0 +1,178 @@
+<%- include('commun/header') %>
+
+<style>
+    .animate-card {
+        opacity: 0;
+        transform: scale(0.9);
+        animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+
+
+    <div class="main-content">
+        <div class="container-fluid ">
+            <%- include('commun/navbar') %>
+
+            <!-- Header -->
+        <div class="d-flex  justify-content-between align-items-center mb-4">
+            <h1 class="h3">Statistique</h1>
+            <button class="btn btn-danger">Déconnexion</button>
+        </div>
+            <hr>
+        <!-- Overview Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 ">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Commandes</h5>
+                        <p class="card-text text-light">35</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Produits</h5>
+                        <p class="card-text text-light">120</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-black">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Utilisateurs</h5>
+                        <p class="card-text text-light">3</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center animate__animated animate__zoomIn bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Revenus</h5>
+                        <p class="card-text text-light">4.560</p>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+            <hr>
+    
+        <h2 class="text-center mt-5">Gestion des Clients</h2>
+        <div class="row-cols-1">
+            
+            <input type="text" id="searchClient" class="form-control mb-3" placeholder="Rechercher un client...">
+       
+        </div>
+        
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Residence</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbc" class="animate-card">
+               
+            </tbody>
+        </table>
+
+
+        <div class="container mt-4">
+            <h2 id="ajt" class="text-center text-success-emphasis bg-info border-1" style="border-radius: 30px;">Ajouter un Client</h2>
+            
+            <div class="card animate-card p-4">
+                <form id="addClientForm" action="/admin/clients/add" method="post">
+                    <!-- Champ : Nom -->
+                    <div class="mb-3">
+                        <label for="clientName" class="form-label">Nom</label>
+                        <input type="text" name="nom" class="form-control" id="clientName" placeholder="Entrez le nom" required>
+                    </div>
+                    
+                    <!-- Champ : Email -->
+                    <div class="mb-3">
+                        <label for="clientEmail" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="clientEmail" placeholder="Entrez l'email" required>
+                    </div>
+        
+                    <!-- Champ : Téléphone -->
+                    <div class="mb-3">
+                        <label for="clientPhone" class="form-label">Téléphone</label>
+                        <input type="tel" name="phone" class="form-control" id="clientPhone" placeholder="Entrez le téléphone" required>
+                    </div>
+        
+                            <!-- Champ : Residence -->
+                    <div class="mb-3">
+                        <label for="clientPhone" class="form-label">Residence</label>
+                        <input type="text" name="residence" class="form-control" id="clientPhone" placeholder="Entrez la Residence" required>
+                    </div>
+                    <!-- Bouton d'ajout -->
+                    <button type="submit" class="btn btn-success w-100">Ajouter</button>
+                </form>
+            </div>
+        </div>
+        
+        <hr>
+
+        <h2 class="text-center mb-4" id="mess">Messages des Utilisateurs</h2>
+
+        <!-- Zone d'affichage des messages -->
+        <div id="messages">
+            <div class="card p-3 mb-3 shadow-sm">
+                <h5 class="text-primary">Jean Dupont</h5>
+                <p>J'adore ce service, super rapide et efficace !</p>
+                <small class="text-muted">Publié le 22/02/2025 à 14:30</small>
+            </div>
+    
+            <div class="card p-3 mb-3 shadow-sm">
+                <h5 class="text-primary">Alice Martin</h5>
+                <p>Le restaurant est top, mais il faudrait ajouter plus de plats végétariens.</p>
+                <small class="text-muted">Publié le 21/02/2025 à 18:45</small>
+            </div>
+    
+            <div class="card p-3 mb-3 shadow-sm">
+                <h5 class="text-primary">David T.</h5>
+                <p>Service client au top ! Je recommande vivement.</p>
+                <small class="text-muted">Publié le 20/02/2025 à 10:15</small>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script src="../assets/js/bootstrap.bundle.js"></script>
+<script src="../assets/admin/js/cmmun.js"></script>
+<script src="../assets/js/ajax.js"></script>
+</body>
+</html>
