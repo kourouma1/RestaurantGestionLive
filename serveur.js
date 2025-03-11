@@ -12,10 +12,13 @@ const path=require('path')
 const modulePath = path.resolve(__dirname + '/serveur.js');
 const modules = require(modulePath);
 
+// Définir le répertoire des vues
+serv.set("view engine", "ejs");
+serv.set('views', __dirname + '/IHM');
 
 //definition du moteur d'affichage
-serv.set("view engine", "ejs");
-serv.set("views", "IHM");
+
+
 
 serv.use(express.static('IHM'));
 
