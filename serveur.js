@@ -69,7 +69,7 @@ serv.get('/', (req, res) => {
     res.status(200).render('pages/acceuil', { message: "" })
 });
 
-
+//================================================================================================================================
 
 
 
@@ -121,7 +121,7 @@ serv.post('/login', async (req, res) => {
 
 
 
-//gestion de recuperation de la page index Clients
+//===================================gestion de recuperation de la page index Clients======V
 serv.get('/page/', (req, res) => {
 
 
@@ -145,7 +145,7 @@ serv.get('/page/', (req, res) => {
                     return res.status(500).json({ error: "Erreur lors de la récupération des reservations" });
                 }
                 results2 = results2
-                return res.status(200).render('pages/index', { results, results2 })
+            return res.status(200).render('pages/index', { results, results2 })
 
             })
 
@@ -160,9 +160,11 @@ serv.get('/page/', (req, res) => {
 
 
 })
+//=========================================================================
 
 
-// Route pour traiter l'inscription d'un client
+// ===========Route pour traiter l'inscription d'un client==========//V
+
 serv.post('/ins', async (req, res) => {
     const { nom, email, tel, ads, pwd } = req.body;
 
@@ -184,11 +186,110 @@ serv.post('/ins', async (req, res) => {
     });
 });
 
-
+//===================================================================
 
 
 
 //======================FIN DE LA GESTION COTE CLIENT=============================///
+
+
+/*
+
+
+DEBUT DE LA GESTION COTE ADMINISTRATION 
+
+
+
+*/
+
+////===============================GESTION COTE ADMIN===============================///
+
+
+
+
+
+
+
+
+
+
+//============================pour la deconnection====v
+serv.get('/decon', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.log('erreur de deconnexion de la session .');
+
+        }
+        //console.log(req.session.userId );
+        console.log('la session a ete bien detruite !');
+
+
+        res.status(301).redirect('/')
+
+    })
+})
+
+//=================page apropos====v
+serv.get('/apropos', (req, res) => {
+    if (req.session.userId) {
+        return res.status(200).render('pages/apropos')
+    }
+
+});
+
+
+
+///========================================pour effectuer une commande===============///
+serv.post('/page/cmd', async (req, res) => {
+    const { plat, garni, instruct, qt } = req.body;
+
+    // Hacher le mot de passe
+    const id = req.session.userId
+    const status = "en cours"
+
+    // Insérerton de la reservation dans la base de données
+    const query = 'INSERT INTO commandes (client_id,plats,quantite,garniture,statut,instruc) VALUES (?, ?, ?, ?, ?,?)';
+    db.query(query, [id, plat, qt, garni, status, instruct], (err, results) => {
+        if (err) {
+            console.log("Une erreur ses produit lors de la commande :", err)
+
+            return res.status(500).send('Erreur lors de l\'envoi de la commande')
+        }
+
+
+        res.status(301).redirect('/page/')
+
+    })
+
+});
+
+
+///=============pour effectuer une reservation===============///
+serv.post('/res', async (req, res) => {
+    const { date, heure, NBpersonne } = req.body;
+
+    // Hacher le mot de passe
+    const id = req.session.userId
+    const status = "en cours"
+
+    // Insérer l'utilisateur dans la base de données
+    const query = 'INSERT INTO reservations (client_id,date_reservation,heure,nombre_personnes,statut) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [id, date, heure, NBpersonne, status], (err, results) => {
+        if (err) {
+            console.log("Une erreur ses produit lors de la commande :", err)
+
+            return res.status(500).send('Erreur lors de l\'envoi de la reservation')
+        }
+        console.log("reservation effectuer correctement...")
+        res.status(301).redirect('/page/')
+
+
+    })
+
+
+});
+
+////=========================FIN DE LA GESTION ADMIN===================================////
 
 
 
