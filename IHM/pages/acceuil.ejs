@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Mon Restaurant</title>
+    <link rel="stylesheet" href="../assets/css/accueil.css">
+    
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">Mon Restaurant</a>
+            <ul class="navbar-menu">
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#" id="open-modal">Login/Inscription</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Hero avec vidéo en fond -->
+    <section class="hero">
+        <video autoplay muted loop id="background-video">
+            <source src="../assets/video/pub (1).mp4" type="video/mp4">
+            
+        </video>
+        <div class="hero-content">
+            <h1>Bienvenue Chez Restaurant TECHK</h1>
+            <p>Découvrez des saveurs uniques et des plats préparés avec amour.</p>
+        </div>
+    </section>
+
+    <!-- Carrousel de texte -->
+    <div class="carousel-container">
+        <div class="carousel-text">
+            <span>🍽️ Plats délicieux</span>
+            <span>🍷 Vins sélectionnés</span>
+            <span>🌟 Ambiance chaleureuse</span>
+            <span>🍰 Desserts maison</span>
+        </div>
+    </div>
+
+
+    
+
+    <!-- Section À Propos -->
+    <section id="apropos" class="about">
+        <h2>À Propos de Nous</h2>
+        <p>
+            Mon Restaurant est un établissement familial qui propose une cuisine traditionnelle avec une touche moderne.
+            Nous nous engageons à utiliser des ingrédients frais et locaux pour créer des plats délicieux et mémorables.
+        </p>
+    </section>
+
+            <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <!-- Onglets pour basculer entre inscription et connexion -->
+            <div class="tabs">
+                <button class="tab-link active" data-tab="login">Connexion</button>
+                <button class="tab-link" data-tab="register">Inscription</button>
+            </div>
+
+            <!-- Formulaire de connexion -->
+            <form id="login-form" class="tab-content active" action="/login" method="post">
+                
+                <div class="form-group">
+                    <label for="login-email">Email :</label>
+                    <input type="email" id="login-email" name="email" required>
+                    <span class="error-message" id="login-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Mot de passe :</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <span class="error-message" id="login-password-error"></span>
+                </div>
+                <h5 class="h5"style="color:red;"><%= message  %></h5>
+                <button type="submit">Se connecter</button>
+            </form>
+
+            <!-- Formulaire d'inscription -->
+            <form id="register-form" method="post" action="/ins" class="tab-content">
+                
+                <div class="form-group">
+                    <label for="register-email">Nom :</label>
+                    <input type="text" id="register-email" name="nom" required>
+                    <span class="error-message" id="register-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email :</label>
+                    <input type="email" id="register-email" name="email" required>
+                    <span class="error-message" id="register-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Tel :</label>
+                    <input type="tel" id="register-email" name="tel" required>
+                    <span class="error-message" id="register-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Addresse :</label>
+                    <input type="text" id="register-email" name="ads" required>
+                    <span class="error-message" id="register-email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Mot de passe :</label>
+                    <input type="password" id="register-password" name="pwd" required>
+                    <span class="error-message" id="register-password-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le mot de passe :</label>
+                    <input type="password" id="confirm-password" name="cpwd" required>
+                    <span class="error-message" id="confirm-password-error"></span>
+                </div>
+                <button type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <script > 
+        // Ajouter une classe à la barre de navigation lors du scroll
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+
+
+// Ouvrir le modal
+document.getElementById('open-modal').addEventListener('click', function () {
+    document.getElementById('modal').style.display = 'flex';
+});
+
+// Fermer le modal
+document.querySelector('.close-modal').addEventListener('click', function () {
+    document.getElementById('modal').style.display = 'none';
+});
+
+// Basculer entre les onglets
+document.querySelectorAll('.tab-link').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+        // Retirer la classe active de tous les onglets
+        document.querySelectorAll('.tab-link').forEach(function (t) {
+            t.classList.remove('active');
+        });
+
+        // Ajouter la classe active à l'onglet cliqué
+        tab.classList.add('active');
+
+        // Masquer tous les contenus d'onglets
+        document.querySelectorAll('.tab-content').forEach(function (content) {
+            content.classList.remove('active');
+        });
+
+        // Afficher le contenu de l'onglet cliqué
+        const target = tab.getAttribute('data-tab');
+        document.getElementById(target + '-form').classList.add('active');
+    });
+});
+
+/* Validation du formulaire de connexion
+document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    let isValid = true;
+
+    // Validation de l'email
+    if (!email || !email.includes('@')) {
+        document.getElementById('login-email-error').textContent = 'Veuillez entrer un email valide.';
+        document.getElementById('login-email-error').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('login-email-error').style.display = 'none';
+    }
+
+    // Validation du mot de passe
+    if (!password || password.length < 6) {
+        document.getElementById('login-password-error').textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
+        document.getElementById('login-password-error').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('login-password-error').style.display = 'none';
+    }
+
+
+    if (isValid) {
+        alert('Connexion réussie !');
+        document.getElementById('modal').style.display = 'none';
+    }
+});*/
+
+
+
+/* Validation du formulaire d'inscription
+document.getElementById('register-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    let isValid = true;
+
+    // Validation de l'email
+    if (!email || !email.includes('@')) {
+        document.getElementById('register-email-error').textContent = 'Veuillez entrer un email valide.';
+        document.getElementById('register-email-error').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('register-email-error').style.display = 'none';
+    }
+
+    // Validation du mot de passe
+    if (!password || password.length < 6) {
+        document.getElementById('register-password-error').textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
+        document.getElementById('register-password-error').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('register-password-error').style.display = 'none';
+    }
+
+    // Validation de la confirmation du mot de passe
+    if (password !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Les mots de passe ne correspondent pas.';
+        document.getElementById('confirm-password-error').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('confirm-password-error').style.display = 'none';
+    }
+
+    if (isValid) {
+        alert('Inscription réussie !');
+        document.getElementById('modal').style.display = 'none';
+    }
+});*/
+    </script>
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management</title>
+    
+    
+    
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark animate__animated animate__fadeInDown">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Restaurant</a>
+            <button class="nav  bar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Accueil
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#offre2">Nos Offre Speciales</a></li>
+                          <li><a class="dropdown-item" href="#daily-menu">Menu du Jour</a></li>
+                          <li><a class="dropdown-item" href="#gallery">Galleri Photo</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          
+                          <li><a class="dropdown-item bg-danger text-light" href="/decon">Se Deconnecter</a></li>
+                        </ul>
+                      </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Commandes
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#orderModal" href="#offre">Effectuer une commade</a></li>
+                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#commandeModal"  href="#">Vos commandes</a></li>
+                          
+                       </ul>
+                      </li>
+                      
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Reservations
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reservationModal" href="#">Effectuer une reservation</a></li>
+                          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reservationsModal"  href="#">Vos Reservations</a></li>
+                          
+                       </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contactModal" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/apropos">Apropos</a>
+                    </li>
+                   
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <video autoplay loop muted>
+                    <source src="../assets/video/pub (1).mp4" type="video/mp4">
+                </video>
+                <div class="carousel-caption text-center text-light">
+                    <h1 class="animate__animated animate__fadeInUp">Bienvenue à notre Restaurant</h1>
+                    <p class="animate__animated animate__fadeInUp">Savourez les meilleurs plats avec une expérience unique.</p>
+                </div>     
+            </div>
+            <div class="carousel-item">
+                <video autoplay loop muted>
+                    <source src="../assets/video/pub (2).mp4" type="video/mp4">
+                </video>
+                <div class="carousel-caption text-center text-light">
+                    <h1 class="animate__animated animate__fadeInUp">Cuisine Authentique</h1>
+                    <p class="animate__animated animate__fadeInUp">Découvrez des saveurs inégalées et des ingrédients frais.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <video autoplay loop muted>
+                    <source src="../assets/video/pub (3).mp4" type="video/mp4">
+                </video>
+                <div class="carousel-caption text-center text-light">
+                    <h1 class="animate__animated animate__fadeInUp">Cuisine Authentique</h1>
+                    <p class="animate__animated animate__fadeInUp">Découvrez des saveurs inégalées et des ingrédients frais.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Events Section -->
+    <section class="events-section" id="offre">
+        <!-- Événements Section -->
+    <h1 class="section-title menu-title">Événements à Venir</h1>
+    <div class="events-container">
+        <!-- Événement 1 -->
+        <div class="card-item">
+            <img src="../assets/img/resto (4).jfif" alt="Événement 1">
+            <div class="card-body">
+                <h5>Concert de Jazz</h5>
+                <p>Venez profiter d'une soirée musicale exceptionnelle avec des artistes locaux de jazz.</p>
+                <p><strong>Date: 25 Mars 2025</strong></p>
+            </div>
+        </div>
+
+        <!-- Événement 2 -->
+        <div class="card-item">
+            <img src="../assets/img/serv (1).jfif" alt="Événement 2">
+            <div class="card-body">
+                <h5>Exposition d'Art</h5>
+                <p>Venez découvrir des œuvres d'art modernes et contemporaines dans notre galerie.</p>
+                <p><strong>Date: 5 Avril 2025</strong></p>
+            </div>
+        </div>
+
+        <!-- Événement 3 -->
+        <div class="card-item">
+            <img src="../assets/img/event (1).jfif" alt="Événement 3">
+            <div class="card-body">
+                <h5>Festival Culinaire</h5>
+                <p>Participez à un festival gastronomique où des chefs du monde entier se rassemblent pour vous émerveiller.</p>
+                <p><strong>Date: 15 Mai 2025</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offres Spéciales Section -->
+    <h1 class="section-title menu-title " id="offre2">Offres Spéciales</h1>
+    <div class="offers-container">
+        <!-- Offre Spéciale 1 -->
+        <div class="card-item">
+            <img src="../assets/img/pubamour (3).jfif" alt="Offre Spéciale 1">
+            <div class="card-body">
+                <h5>Menu Familial</h5>
+                <p>Profitez de notre offre spéciale pour 4 personnes à prix réduit!</p>
+                <p><strong>Prix: 45 000 GNF</strong></p>
+            </div>
+        </div>
+
+        <!-- Offre Spéciale 2 -->
+        <div class="card-item">
+            <img src="../assets/img/pubamour (7).jfif" alt="Offre Spéciale 2">
+            <div class="card-body">
+                <h5>Plat du Jour</h5>
+                <p>Un plat délicieux à moitié prix pour toute commande avant 14h!</p>
+                <p><strong>Prix: 200 000 GNF</strong></p>
+            </div>
+        </div>
+
+        <!-- Offre Spéciale 3 -->
+        <div class="card-item">
+            <img src="../assets/img/pubamour (3).jfif" alt="Offre Spéciale 3">
+            <div class="card-body">
+                <h5>Happy Hour</h5>
+                <p>Profitez de nos réductions sur les boissons pendant l'Happy Hour tous les soirs!</p>
+                <p><strong>Prix: 150 000 GNF</strong></p>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Daily Menu Section -->
+    <section class="daily-menu" id="daily-menu">
+       
+
+        <div class="container2">
+            <h1 class="menu-title">Menu du Jour</h1>
+        
+            <!-- Menu Cards -->
+            <div class="menu-container">
+                <!-- Plat 1 -->
+                <div class="menu-card">
+                    <img src="../assets/img/deser (1).jfif" alt="Plat 1">
+                    <div class="menu-card-body">
+                        <h5 class="text-light">Spaghetti Bolognaise</h5>
+                        <p>Délicieuses pâtes à la sauce tomate et viande hachée, servies avec du fromage râpé.</p>
+                        <p><strong>Prix: 1OO 000 GNF</strong></p>
+                    </div>
+                </div>
+        
+                <!-- Plat 2 -->
+                <div class="menu-card">
+                    <img src="../assets/img/deser (4).jfif" alt="Plat 2">
+                    <div class="menu-card-body">
+                        <h5 class="text-light">Poulet Grillé</h5>
+                        <p>Poulet tendre grillé accompagné de légumes frais et de pommes de terre rôties.</p>
+                        <p><strong>Prix: 219 000 GNF</strong></p>
+                    </div>
+                </div>
+        
+                <!-- Plat 3 -->
+                <div class="menu-card">
+                    <img src="../assets/img/deser (2).jfif" alt="Plat 3">
+                    <div class="menu-card-body">
+                        <h5 class="text-light">Burger Maison</h5>
+                        <p>Burger juteux avec du fromage, de la laitue, et une sauce maison, servi avec des frites.</p>
+                        <p><strong>Prix: 120 000 GNF</strong></p>
+                    </div>
+                </div>
+        
+                <!-- Plat 4 -->
+                <div class="menu-card">
+                    <img src="../assets/img/deser (3).jfif" alt="Plat 4">
+                    <div class="menu-card-body">
+                        <h5 class="text-light">Salade César</h5>
+                        <p>Salade fraîche avec du poulet grillé, des croûtons, du parmesan et une sauce césar.</p>
+                        <p><strong>Prix: 130 000 GNF</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+    <!-- Section: Réservations -->
+    <section id="reservations" class="container mt-5">
+        <h2 class="text-center mb-4">Réservations</h2>
+        <p class="text-center form-toggle">Cliquez ici pour réserver une table</p>
+        <form class="reservation-form" id="reservationForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Nom" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="date" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="time" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="number" class="form-control" placeholder="Nombre de personnes" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-reserve col-12">Réserver maintenant</button>
+        </form>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 animate__animated animate__fadeInUp">Galerie photo</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="img-container">
+                        <img src="../assets/img/event (5).jfif" alt="Photo 1" class="img-fluid">
+                        <div class="overlay">
+                            <span>Ambiance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="img-container">
+                        <img src="../assets/img/event (2).jfif" alt="Photo 2" class="img-fluid">
+                        <div class="overlay">
+                            <span>Plats Délicieux</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="img-container">
+                        <img src="../assets/img/event (5).jfif" alt="Photo 3" class="img-fluid">
+                        <div class="overlay">
+                            <span>Décor Chaleureux</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="img-container">
+                        <img src="../assets/img/event (1).jfif" alt="Photo 4" class="img-fluid">
+                        <div class="overlay">
+                            <span>Chef en Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="img-container">
+                        <img src="../assets/img/event (5).jfif" alt="Photo 5" class="img-fluid">
+                        <div class="overlay">
+                            <span>Moments Mémorables</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="img-container">
+                        <img src="../assets/img/event (4).jfif" alt="Photo 6" class="img-fluid">
+                        <div class="overlay">
+                            <span>Événements</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+         <!-- Newsletter Section -->
+    <section class="newsletter my-5">
+        <h2 class="animate__animated animate__fadeInDown">Restez informé</h2>
+        <p class="animate__animated animate__fadeInDown">Inscrivez-vous pour recevoir les dernières nouvelles et promotions.</p>
+        <form>
+            <input type="email" placeholder="Entrez votre email" required>
+            <br>
+            <button type="submit">S'inscrire</button>
+        </form>
+
+            <h2 class="text-center mb-4">Témoignages et Avis des Clients</h2>
+            <div id="carouselTestimonials" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">"Un service incroyable ! L'expérience était au-delà de mes attentes. Je recommande vivement !" </p>
+                                <footer class="blockquote-footer">Jean Dupont, <cite title="Source Title">Client satisfait</cite></footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">"Le personnel était très accueillant et le service rapide. Un endroit que j'apprécie à chaque visite !" </p>
+                                <footer class="blockquote-footer">Marie Martin, <cite title="Source Title">Client fidèle</cite></footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">"Les plats sont toujours délicieux et l'ambiance est superbe. Je reviendrai avec plaisir !" </p>
+                                <footer class="blockquote-footer">Ali Cissé, <cite title="Source Title">Client régulier</cite></footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        
+    </section>
+
+    
+    
+
+    <!-- Modal du formulaire de contact -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Formulaire de Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Objet</label>
+                        <input type="text" class="form-control" id="subject" placeholder="Objet du message" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Votre message" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary w-100">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal pour la réservation -->
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel">Formulaire de Réservation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/res" method="post">
+
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date de réservation</label>
+                        <input type="date" name="date" class="form-control" id="date" required>
+                    </div>
+                    
+
+                    <div class="mb-3">
+                        <label for="time" class="form-label">Heure de réservation</label>
+                        <input type="time" name="heure" class="form-control" id="time" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="guests" class="form-label">Nombre de personnes</label>
+                        <input type="number" name="NBpersonne" class="form-control" id="guests" placeholder="Nombre de personnes" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success w-100">Réserver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal d'Identification -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Identification Client</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire d'identification -->
+          <form action="/login" method="post">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Entrez votre mot de passe" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+          </form>
+          <div class="modal-footer">
+            <a href="#" class="text-primary">Mot de passe oublié ?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Modal de Commande -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Passer une commande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de Commande -->
+          <form action="cmd" method="post">
+            <div class="mb-3">
+              <label for="dish" class="form-label">Choisissez votre plat</label>
+              <select class="form-select" id="dish" name="plat" required>
+                <option value="">Sélectionner un plat</option>
+                <option value="pasta">Pâtes Carbonara</option>
+                <option value="pizza">Pizza Margherita</option>
+                <option value="salad">Salade César</option>
+                <option value="burger">Burger Deluxe</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="additions" class="form-label">Ajouter des garnitures</label>
+              <select class="form-select" id="additions" name="garni">
+                <option value="cheese">Fromage</option>
+                <option value="mushrooms">Champignons</option>
+                <option value="bacon">Bacon</option>
+                <option value="avocado">Avocat</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="specialInstructions" class="form-label">Instructions spéciales</label>
+              <textarea class="form-control" name="instruct" id="specialInstructions" rows="3" placeholder="Exemple : Pas d'oignons, sauce à part..."></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantité</label>
+              <input name="qt" type="number" class="form-control" id="quantity" value="1" min="1" required>
+            </div>
+            <div class="mb-3">
+              <p><u class="text-danger">NB:</u> Veillez consulter le menu du jour avant toute validation de commande !</p>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Passer la commande</button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal des Réservations -->
+<div class="modal fade" id="reservationsModal" tabindex="-1" aria-labelledby="reservationsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reservationsModalLabel">Mes Réservations</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Tableau des Réservations -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">NB Personne</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--  Réservations -->
+              <% for(i=0;i<results2.length;i++){%>
+              <tr>
+                <th scope="row"><%= results2[i].date_reservation%></th>
+                <td><%= results2[i].heure_reservation %></td>
+                <td><%= results2[i].nombre_personnes %></td>
+                
+                <td><span class="badge bg-success" ><%= results2[i].statut %></span></td>
+                <td>
+                      <button  class="btn btn-danger btn-sm" >Supprimer</button>
+                </td>
+              </tr>
+            <% } %>
+            </tbody>
+          </table>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal pour Modifier une Réservation -->
+  <div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editReservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editReservationModalLabel">Modifier la Réservation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de modification de réservation -->
+          <form>
+            <div class="mb-3">
+              <label for="editDate" class="form-label">Date de Réservation</label>
+              <input type="date" name="date" class="form-control" id="editDate" required>
+            </div>
+            <div class="mb-3">
+              <label for="editTime" class="form-label">Heure</label>
+              <input type="time" name="heur" class="form-control" id="editTime" required>
+            </div>
+            <div class="mb-3">
+              <label for="editPeople" class="form-label">Nombre de Personnes</label>
+              <input type="number" name="NB" class="form-control" id="editPeople" value="2" min="1" required>
+            </div>
+            
+            <button type="submit" class="btn btn-warning w-100">Mettre à jour</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ <!-- Modal -->
+ <div class="modal fade animate__animated animate__fadeIn" id="commandeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Liste de vos dernières Commandes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <thead >
+                        <tr >
+                           
+                            <th class="bg-secondary">Plat</th>
+                            <th class="bg-secondary">Quantité</th>
+                            <th class="bg-secondary">Statut</th>
+                            <th class="bg-secondary">Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="commandeTableBody">
+                        <% for(i=0;i<results.length;i++){%>
+                            <tr>
+                            
+                            <td><%= results[i].plats %></td>
+                            <td><%= results[i].Quantite %></td>
+
+                            <% if (results[i].statut=="annulée" ) {%>
+
+                            <td class="bg-danger text-warning"><%= results[i].statut %></td>
+                            <% }else{ %>
+                              <td class="bg-dark text-warning"><%= results[i].statut %></td>
+                              <% } %>
+                              
+                            <% if (results[i].statut!="livrer" && results[i].statut!="annulée") {%>
+                              <td>
+                                <button class="btn btn-danger" onclick="openDeleteModal('<%= results[i].commande_id %>')">SUPPRIMER</button>
+                            </td>
+                            <%}else{ %>
+
+                              <td>
+                                <p>aucune action requise</p>
+
+                              </td>
+                                
+                            <% } %>
+                            </tr>
+                            
+                        <%}%>
+                    </tbody>
+                </table>
+                  </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<!-- Modal de modification de Commande -->
+<div class="modal fade" id="orderModal2" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" data-aos="zoom-in" data-aos-duration="800">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Effectuer une modification de commande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de Commande -->
+          <form action="cmd/mod" method="post">
+            <div class="mb-3">
+                <input class="form-control" type="hidden" name="idmod" id="id">
+            </div>
+            <div class="mb-3">
+              <label for="dish" class="form-label">Choisissez votre plat</label>
+              <select class="form-select" id="dish" name="plat" required>
+                <option value="">Sélectionner un plat</option>
+                <option value="pasta">Pâtes Carbonara</option>
+                <option value="pizza">Pizza Margherita</option>
+                <option value="salad">Salade César</option>
+                <option value="burger">Burger Deluxe</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="additions" class="form-label">Ajouter des garnitures</label>
+              <select class="form-select" id="additions" name="garni">
+                <option value="cheese">Fromage</option>
+                <option value="mushrooms">Champignons</option>
+                <option value="bacon">Bacon</option>
+                <option value="avocado">Avocat</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="specialInstructions" class="form-label">Instructions spéciales</label>
+              <textarea class="form-control" name="instruct" id="specialInstructions" rows="3" placeholder="Exemple : Pas d'oignons, sauce à part..."></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantité</label>
+              <input name="qt" type="number" class="form-control" id="quantity" value="1" min="1" required>
+            </div>
+            <div class="mb-3">
+              <p><u class="text-danger">NB:</u> Veillez consulter le menu du jour avant toute validation de commande !</p>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Soumettre la modification</button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Bouton caché pour déclencher le modal -->
+<button id="openModal" data-bs-toggle="modal" data-bs-target="#confirmModal" style="display: none;"></button>
+
+<!-- Modal de confirmation Bootstrap -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="confirmModalLabel">ATTENTION !</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Voulez-vous vraiment supprimer cette commande ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger" id="confirmDelete">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+      
+<!-- Bouton flottant -->
+<button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()">
+    ↑
+</button>
+    <%- include('communs/footer') %>
+    
+   
+    <script src="../assets/js/bootstrap.bundle.js"></script>
+   
+
+</body>
+<script src="../assets/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</html>
+ 

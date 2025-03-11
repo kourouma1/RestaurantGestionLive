@@ -1,0 +1,609 @@
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item video {
+            object-fit: cover;
+            width: 100%;
+            height: 100vh;
+        }
+        .carousel-caption {
+            bottom: 20%;
+        }
+
+        .carousel-caption h1 {
+            font-size: 3rem;
+            animation: fadeInUp 1.5s;
+        }
+
+        .carousel-caption p {
+            font-size: 1.5rem;
+            animation: fadeInUp 2s;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .about-section {
+            padding: 60px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .about-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.5s;
+        }
+
+        .about-section p {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 2s;
+        }
+
+        .about-section .btn {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 50px;
+            animation: fadeInUp 2.5s;
+        }
+
+        .events-section {
+            background-color: #f8f9fa;
+            padding: 50px 20px;
+        }
+
+        .events-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s;
+        }
+
+        .event-card {
+            background-color: white;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-card .card-body {
+            padding: 20px;
+        }
+
+        .menu-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card h5 {
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+
+        .menu-card p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .reservation-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .form-toggle {
+            cursor: pointer;
+        }
+
+        .form-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-reserve {
+            background-color: #28a745;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-reserve:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery {
+            padding: 50px 0;
+        }
+
+        .gallery .img-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery .img-container:hover img {
+            transform: scale(1.1);
+        }
+
+        
+        .gallery .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery .img-container:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery .overlay span {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .carousel-item {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+    .carousel-item-next,
+    .carousel-item-prev,
+    .carousel-item.active {
+        opacity: 1;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+    }
+
+    .modal-header {
+        background-color: #010811d9;
+        color: white;
+        font-weight: bold;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .form-control {
+        font-size: 1rem;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+    .modal-dialog {
+        max-width: 600px;
+    }
+
+
+    footer {
+        background-color: #343a40;
+    }
+
+    footer h5 {
+        font-size: 1.25rem;
+        color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    footer a {
+        font-size: 1rem;
+        color: #f8f9fa;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: #28a745;  /* Vert pour les liens au survol */
+    }
+
+    footer .fab {
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    footer .fab:hover {
+        color: #28a745;  /* Vert pour les icônes au survol */
+    }
+
+    footer .list-unstyled {
+        padding-left: 0;
+    }
+
+    footer .d-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    footer .mx-2 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    
+
+    .row {
+        margin-bottom: 30px;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .text-primary {
+        color: #28a745;
+    }
+
+    .text-primary:hover {
+        color: #218838;
+    }
+
+    .text-success {
+        color: #28a745;
+    }
+
+    .text-success:hover {
+        color: #218838;
+    }
+
+    .newsletter {
+            background-color: #f8f9fa;
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .newsletter p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInDown 1.5s;
+        }
+
+        .newsletter input[type="email"] {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter button {
+            margin-top: 20px;
+            padding: 10px 30px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            animation: fadeInUp 2s;
+        }
+
+        .newsletter button:hover {
+            background-color: #218838;
+        }
+    
+
+
+
+
+
+
+        
+        /* Style général */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Titre */
+        .menu-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 50px 0;
+            text-align: center;
+            color: #343a40;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Cards container */
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Style des cards */
+        .menu-card {
+            width: 300px;
+            box-shadow: 0 0 15px rgba(249, 233, 89, 0.727);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #1a034f;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card-body {
+            padding: 20px;
+            text-align: center;
+           
+        }
+
+        .menu-card-body h5 {
+            font-size: 1.8rem;
+            margin-top: 15px;
+            color: #2c3e50;
+        }
+
+        .menu-card-body p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .menu-card-body strong {
+            font-size: 1.4rem;
+            color: #e74c3c;
+        }
+
+        /* Animation des cards */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation delay pour les items */
+        .menu-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .menu-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .menu-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .menu-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+    
+
+
+
+
+    /* Style général */
+   
+
+    /* Titre général */
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 30px 0;
+        text-align: center;
+        color: #343a40;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* Cards container */
+    .menu-container, .events-container, .offers-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #c2d74b5a;
+        border-radius: 30px;
+    }
+    
+    /* Style des cards */
+    .card-item {
+        width: 300px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fff;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .card-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .card-body h5 {
+        font-size: 1.8rem;
+        margin-top: 15px;
+        color: #2c3e50;
+    }
+
+    .card-body p {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+    }
+
+    .card-body strong {
+        font-size: 1.4rem;
+        color: #e74c3c;
+    }
+
+    /* Animation des cards */
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Animation delay pour les items */
+    .card-item:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .card-item:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .card-item:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    .card-item:nth-child(4) {
+        animation-delay: 0.8s;
+    }
+
+
+
+
+
+    /* Style du bouton flottant */
+    .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        display: none; /* Le bouton est caché au début */
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    /* Animation du bouton au chargement */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Lorsque l'on survole le bouton */
+    .back-to-top:hover {
+        background-color: #0056b3;
+    }

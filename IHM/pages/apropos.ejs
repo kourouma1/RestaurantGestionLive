@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services..</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/apropos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+     <!-- Ajouter Font Awesome pour les icônes sociales -->
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Styles supplémentaires pour l'animation et la disposition -->
+
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark animate__animated animate__fadeInDown">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Restaurant</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/index">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Apropos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contactModal" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#reservationModal" href="#">Reservation</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="container my-5">
+        <h2 class="text-center mb-4" data-aos="fade-up" data-aos-duration="1000">À propos de notre Restaurant</h2>
+    
+        <div class="row">
+            <!-- Image du restaurant -->
+            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                <img src="../assets/img/resto (4).jfif" class="img-fluid rounded shadow-sm" alt="Restaurant">
+            </div>
+    
+            <!-- Description du restaurant -->
+            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                <h3>Notre Histoire</h3>
+                <p>Notre restaurant est né d'une passion commune pour la cuisine raffinée et les saveurs authentiques. Depuis son ouverture, nous avons toujours cherché à offrir à nos clients une expérience culinaire exceptionnelle, dans un cadre chaleureux et accueillant. Chaque plat est préparé avec soin, en utilisant des ingrédients frais et locaux, pour garantir une qualité irréprochable à chaque bouchée.</p>
+    
+                <h3>Nos Valeurs</h3>
+                <ul>
+                    <li><strong>Authenticité</strong> : Nous restons fidèles à nos racines, en offrant une cuisine traditionnelle et créative.</li>
+                    <li><strong>Qualité</strong> : La qualité des ingrédients est essentielle pour nous, c’est pourquoi nous travaillons avec des producteurs locaux.</li>
+                    <li><strong>Hospitalité</strong> : Nous mettons un point d'honneur à offrir un service chaleureux et attentionné à chaque client.</li>
+                </ul>
+    
+                <h3>Pourquoi Nous Choisir ?</h3>
+                <p>Notre objectif est de vous faire vivre une expérience unique. Que ce soit pour un dîner intime, une fête en famille ou un événement spécial, nous avons l'espace et les services pour répondre à vos attentes. L'atmosphère détendue, la cuisine savoureuse et le service impeccable font de notre restaurant le choix idéal pour tous vos repas.</p>
+    
+                <p>Rejoignez-nous et laissez-vous emporter par une aventure culinaire qui ravira vos papilles. À très bientôt chez nous !</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="container my-5">
+        <h2 class="text-center mb-4">Nos Services</h2>
+        <div class="row">
+            <!-- Service 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="../assets/img/service (6).png" class="card-img-top" alt="Service 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Service de Livraison</h5>
+                        <p class="card-text">Nous offrons un service de livraison rapide et fiable pour vous permettre de déguster nos plats directement chez vous, en toute simplicité.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Service 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="../assets/img/serv (2).jfif" class="card-img-top" alt="Service 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Repas à emporter</h5>
+                        <p class="card-text">Emportez vos plats préférés à toute heure de la journée grâce à notre service de plats à emporter. Pratique et savoureux, où que vous soyez.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Service 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="../assets/img/serv (1).jfif" class="card-img-top" alt="Service 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Réservation de Salle</h5>
+                        <p class="card-text">Réservez une salle pour vos événements privés. Nous avons un espace confortable et élégant pour toutes vos célébrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Animation Scroll -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                    <img src="../assets/img/deser (4).jfif" class="card-img-top" alt="Service 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Cuisine Traditionnelle</h5>
+                        <p class="card-text">Dégustez des plats préparés avec des recettes traditionnelles, pour une expérience culinaire authentique et pleine de saveurs.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <img src="../assets/img/event (2).jfif" class="card-img-top" alt="Service 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Options Végétariennes</h5>
+                        <p class="card-text">Nous proposons une sélection de plats végétariens savoureux pour satisfaire les palais les plus exigeants.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                    <img src="../assets/img/deser (3).jfif" class="card-img-top" alt="Service 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Bar à Desserts</h5>
+                        <p class="card-text">Terminez votre repas en beauté avec notre sélection de desserts faits maison, pour satisfaire toutes vos envies sucrées.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal du formulaire de contact -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Formulaire de Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Objet</label>
+                        <input type="text" class="form-control" id="subject" placeholder="Objet du message" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Votre message" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary w-100">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour la réservation -->
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel">Formulaire de Réservation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Numéro de téléphone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Votre numéro de téléphone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date de réservation</label>
+                        <input type="date" class="form-control" id="date" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="time" class="form-label">Heure de réservation</label>
+                        <input type="time" class="form-control" id="time" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="guests" class="form-label">Nombre de personnes</label>
+                        <input type="number" class="form-control" id="guests" placeholder="Nombre de personnes" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success w-100">Réserver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-dark text-white py-5" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <div class="row">
+            <!-- Blog de Menu -->
+            <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-duration="1000">
+                <h5 class="mb-3">Blog de Menu</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Nos Spécialités</a></li>
+                    <li><a href="#" class="text-white">Menu du Jour</a></li>
+                    <li><a href="#" class="text-white">Nouveautés du Menu</a></li>
+                    <li><a href="#" class="text-white">Recettes en Vedette</a></li>
+                </ul>
+            </div>
+
+            <!-- Blog de Partenaires -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="1000">
+                <h5 class="mb-3">Partenaires</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Nos Fournisseurs</a></li>
+                    <li><a href="#" class="text-white">Partenariats Locaux</a></li>
+                    <li><a href="#" class="text-white">Collaborations</a></li>
+                    <li><a href="#" class="text-white">Devenir Partenaire</a></li>
+                </ul>
+            </div>
+
+            <!-- Réseaux Sociaux -->
+            <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-duration="1000">
+                <h5 class="mb-3">Suivez-Nous</h5>
+                <ul class="list-unstyled d-flex">
+                    <li class="mx-2"><a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="mx-2"><a href="#" class="text-white"><i class="fab fa-twitter"></i></a></li>
+                    <li class="mx-2"><a href="#" class="text-white"><i class="fab fa-instagram"></i></a></li>
+                    <li class="mx-2"><a href="#" class="text-white"><i class="fab fa-youtube"></i></a></li>
+                    <li class="mx-2"><a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Copyright -->
+            <div class="col-12 text-center">
+                <p class="mb-0">&copy; 2025 Restaurant XYZ. Tous droits réservés.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Ajouter AOS pour les animations -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,  // Durée de l'animation
+            easing: 'ease-in-out',  // Type de transition
+            once: true  // L'animation se déclenche une seule fois
+        });
+    </script>
+   
+</body>
+</html>
