@@ -81,6 +81,19 @@
     }
 
 
+    /* Animation personnalisée */
+    @keyframes pulse-green {
+        0%, 100% {
+            color: #10B981; /* Vert Tailwind (emerald-500) */
+        }
+        50% {
+            color: #34D399; /* Vert plus clair (emerald-400) */
+        }
+    }
+    .animate-pulse-green {
+        animation: pulse-green 2s infinite;
+    }
+
 </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -94,8 +107,8 @@
                 <div class="hidden md:flex space-x-6 items-center">
                     <a href="#" class="text-white text-lg nav-link">Accueil</a>
                     <a href="#menu" class="text-white text-lg nav-link">Menu</a>
-                    <a href="#contact" class="text-white text-lg nav-link">Contact</a>
-                    <button class="bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
+                    <button  onclick="toggleModal1()" class="text-white text-lg nav-link">Contact</button>
+                    <button onclick="toggleModal()"" class="bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
                     <button class="flex items-center text-white text-lg nav-link" id="open-modal">
                         <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
@@ -117,8 +130,8 @@
         <div id="mobile-menu" class="hidden md:hidden bg-yellow-500 text-white p-4">
             <a href="#" class="block py-2 nav-link">Accueil</a>
             <a href="#menu" class="block py-2 nav-link">Menu</a>
-            <a href="#contact" class="block py-2 nav-link">Contact</a>
-            <button class="w-full bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
+            <a onclick="toggleModal1()" href="#" class="block py-2 nav-link">Contact</a>
+            <button onclick="toggleModal()" class="w-full bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
             <a href="/mobile/login" class="flex items-center text-white text-lg nav-link" id="open-modal">
                 <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
@@ -208,7 +221,7 @@
                     <p class="text-gray-600 mt-2">Tomates fraîches, mozzarella et basilic.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">80.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -219,7 +232,7 @@
                     <p class="text-gray-600 mt-2">Boeuf 150g, cheddar et sauce maison.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">200.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -230,7 +243,7 @@
                     <p class="text-gray-600 mt-2">Crème, lardons, parmesan et œuf.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">20.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -241,7 +254,7 @@
                     <p class="text-gray-600 mt-2">Steak grillé avec frites maison.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">200.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -253,7 +266,7 @@
                     <p class="text-gray-600 mt-2">Poulet, parmesan, croutons et sauce césar.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">70.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -264,7 +277,7 @@
                     <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">30.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -275,7 +288,7 @@
                     <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">50.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -286,7 +299,7 @@
                     <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-semibold text-yellow-500">20.000 GNF</span>
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
                     </div>
                 </div>
             </div>
@@ -311,7 +324,7 @@
 
             <!-- Service 2 -->
             <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
-                <img src="assets/service/livraison.jpeg" alt="Service 2" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <img src="../assets/service/reservation.jpeg" alt="Service 2" class="w-full h-48 object-cover rounded-t-lg mb-4">
                 <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 2: Réservation en ligne</h3>
                 <p class="text-gray-700 mb-4">Réservez votre table facilement en ligne et assurez-vous de profiter de notre ambiance unique.</p>
                 <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Réserver maintenant</a>
@@ -343,7 +356,7 @@
 
             <!-- Service 6 -->
             <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
-                <img src="https://via.placeholder.com/300" alt="Service 6" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <img src="assets/service/menu.jpeg" alt="Service 6" class="w-full h-48 object-cover rounded-t-lg mb-4">
                 <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 6: Menu spécial du jour</h3>
                 <p class="text-gray-700 mb-4">Découvrez notre menu spécial du jour, une sélection de plats préparés avec des ingrédients frais et locaux.</p>
                 <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Voir le menu</a>
@@ -428,7 +441,108 @@
     </div>
 
 
+    <!-- Modal -->
+    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform transition-all scale-95 opacity-0 relative" id="modalContent">
+            <button onclick="toggleModal()" class="absolute top-2 right-2 text-red-500 text-lg">✖</button>
+            <h2 class="text-xl font-bold mb-4 text-yellow-600 text-center">Nouvelle Commande</h2>
+            <form>
+                <label class="block text-sm font-medium">Nom</label>
+                <input type="text" class="w-full p-2 border rounded-md mb-3" placeholder="Votre nom">
+                
+                <label class="block text-sm font-medium">Email</label>
+                <input type="email" class="w-full p-2 border rounded-md mb-3" placeholder="Votre email">
+                
+                <label class="block text-sm font-medium">Numéro</label>
+                <input type="tel" class="w-full p-2 border rounded-md mb-3" placeholder="Votre numéro">
+                
+                <label class="block text-sm font-medium">Plat</label>
+                <select class="w-full p-2 border rounded-md mb-3">
+                    <option>Pizza</option>
+                    <option>Burger</option>
+                    <option>Salade</option>
+                </select>
+                
+                <label class="block text-sm font-medium">Quantité</label>
+                <input type="number" class="w-full p-2 border rounded-md mb-3" min="1" value="1">
+                
+                <label class="block text-sm font-medium">Méthode de paiement</label>
+                <select class="w-full p-2 border rounded-md mb-3">
+                    <option>Carte bancaire</option>
+                    <option>PayPal</option>
+                    <option>Mobile Money</option>
+                </select>
+                
+                <label class="block text-sm font-medium">Numéro de compte</label>
+                <input type="text" class="w-full p-2 border rounded-md mb-3" placeholder="Votre numéro de compte">
+                
+                <button type="submit" class="w-full bg-yellow-600 text-white py-2 rounded-md hover:bg-yellow-700 transition">Valider la commande</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform transition-all scale-95 opacity-0 relative" id="modalContent1">
+            <button onclick="toggleModal1()" class="absolute top-2 right-2 text-red-500 text-lg">✖</button>
+            <h2 class="text-xl font-bold mb-4 text-yellow-600 text-center">Nous Contacter</h2>
+            <div class="text-4xl font-bold animate-pulse-green texte-vert" id="response"></div> <!-- Zone d'affichage de la réponse -->
+            <form method="post" action="/mail" id="contact-form">
+                <label class="block text-sm font-medium">Nom</label>
+                <input name="nom" type="text" class="w-full p-2 border rounded-md mb-3" placeholder="Votre nom">
+                
+                <label class="block text-sm font-medium">Email</label>
+                <input name="email" type="email" class="w-full p-2 border rounded-md mb-3" placeholder="Votre email">
+                
+                <label class="block text-sm font-medium">Message</label>
+                <textarea name="message" class="w-full p-2 border rounded-md mb-3" rows="4" placeholder="Votre message"></textarea>
+                
+                <button type="submit" class="w-full bg-yellow-600 text-white py-2 rounded-md hover:bg-yellow-700 transition">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleModal1() {
+            const modal = document.getElementById('contactModal');
+            const content = document.getElementById('modalContent1');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            } else {
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+    </script>
+
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('orderModal');
+            const content = document.getElementById('modalContent');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            } else {
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+    </script>
 
 
     <script > 
@@ -482,6 +596,9 @@ document.querySelectorAll('.tab-link').forEach(function (tab) {
         document.getElementById("menu-btn").addEventListener("click", function() {
             document.getElementById("mobile-menu").classList.toggle("hidden");
         });
+
+
+                  
     </script>
 
 

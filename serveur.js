@@ -1,12 +1,17 @@
+require("dotenv").config();
 const express = require('express')
 const mysql = require('mysql')
+// ces deja importerconst nodemailers = require("nodemailer");
 const session = require('express-session')
 //const myconnection = require('express-myconnection')
 const bodyParser = require('body-parser');
 const cors = require("cors");
+//const multer = require('multer');
 const bcrypt = require('bcrypt'); // Pour hacher les mots de passe
 const serv = express();
 const path=require('path')
+
+
 
 
 const modulePath = path.resolve(__dirname + '/serveur.js');
@@ -17,6 +22,21 @@ serv.set("view engine", "ejs");
 serv.set('views', __dirname + '/IHM');
 
 
+
+//==================configuration de l'envoi des email cote client
+
+const nodemailer = require("nodemailer");
+
+// Configuration du transporteur SMTP
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "martinkourouma9@gmail.com", // Remplace par ton email
+        pass: "ltnd hkeo aiom cowa" // Remplace par ton mot de passe ou un App Password si activé
+    }
+});
+
+//=================================
 
 
 //definition du moteur d'affichage
@@ -42,26 +62,23 @@ serv.use((req, res, next) => {
 });
 
 
-// Middleware pour stocker les informations de session dans req.session
-serv.use((req, res, next) => {
-    console.log('Session actuelle:', req.session);
-    next();
-});
 
 // Middleware pour gérer les requêtes CORS
-serv.use(express.json());
-serv.use(cors());
+//serv.use(express.json());
+//serv.use(cors());
 
 // midolware pour la recuperation des donnee venan d'une page a partie d'un formulaire
 
-serv.use(bodyParser.urlencoded({ extended: false }));
+serv.use(bodyParser.urlencoded({ extended: true }));
+serv.use(bodyParser.json()); // Pour parser les requêtes JSON
+
+
 serv.use(express.static('IHM'));
 
 
 
 // midolware pour la recuperation des donnee venan d'une page a partie d'un formulaire
 
-serv.use(bodyParser.urlencoded({ extended: false }));
 
 // les options de Connexion à la base de données MySQL
 const db = mysql.createConnection({
@@ -610,6 +627,33 @@ serv.get('/admin', (req, res) => {
     //res.status(200).render('admin/accuille')
 })
 
+
+
+//Route pour gérer le formulaire de contact
+
+serv.post("/mail", async (req, res) => {
+    const { nom, email, message } = req.body;
+    console.log(req.body);
+    
+    
+    
+    
+
+    const mailOptions = {
+        from: email,
+        to: 'martinkourouma9@gmail.com', // Ton adresse où tu reçois les messages
+        subject: `Vous avez ressu un Nouveau message de ${nom}`,
+        text: `Nom: ${nom}\nEmail: ${email}\n\nMessage:\n${message}`
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.json({ success: true, message: "Email envoyé avec succès !" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Erreur lors de l'envoi de l'email." });
+    }
+});
 
 
 
