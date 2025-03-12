@@ -57,7 +57,7 @@ body {
 
 /* Section Hero avec vidéo en fond */
 .hero {
-    height: 100vh;
+    height: 60vh;
     position: relative;
     display: flex;
     justify-content: center;
@@ -97,11 +97,19 @@ body {
     padding: 20px 0;
     overflow: hidden;
     white-space: nowrap;
+    text-align: center;
+    color: #ddd;
+    text-shadow: yellow 1px 0px 0px;
+    
 }
+
+
 
 .carousel-text {
     display: inline-block;
-    animation: carousel 20s linear infinite;
+    justify-content: center;
+   
+    
 }
 
 .carousel-text span {

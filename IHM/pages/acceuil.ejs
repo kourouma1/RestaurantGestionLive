@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Mon Restaurant</title>
-    <link rel="stylesheet" href="../assets/css/accueil.css">
+  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/accueil.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
    
     
 </head>
@@ -25,23 +29,102 @@
     .navbar-nav .nav-link:hover {
         color: #f39c12;
     }
+
+    .nav-link {
+        position: relative;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s ease-in-out;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .scroll-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+    .scroll-content {
+        display: inline-flex;
+        animation: scroll 20s linear infinite;
+    }
+    @keyframes scroll {
+        from { transform: translateX(100%); }
+        to { transform: translateX(-100%); 
+            
+        
+        }
+    }
+
+    /* Animation pour les cartes de service */
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Animation pour l'effet hover */
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+
 </style>
 </head>
-<body>
-    <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Mon Restaurant</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#apropos">À Propos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" id="open-modal">Login/Inscription</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/admin/login">Espace admin</a></li>
-                </ul>
+<body class="bg-gray-100 text-gray-900">
+
+    <nav class="fixed top-0 left-0 w-full bg-yellow-500 shadow-lg  z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <a href="#" class=" text-white text-2xl font-bold">Mon Restaurant</a>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#" class="text-white text-lg nav-link">Accueil</a>
+                    <a href="#menu" class="text-white text-lg nav-link">Menu</a>
+                    <a href="#contact" class="text-white text-lg nav-link">Contact</a>
+                    <button class="bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
+                    <button class="flex items-center text-white text-lg nav-link" id="open-modal">
+                        <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
+                        </svg>
+                        Login
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-yellow-500 text-white p-4">
+            <a href="#" class="block py-2 nav-link">Accueil</a>
+            <a href="#menu" class="block py-2 nav-link">Menu</a>
+            <a href="#contact" class="block py-2 nav-link">Contact</a>
+            <button class="w-full bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
+            <a href="/mobile/login" class="flex items-center text-white text-lg nav-link" id="open-modal">
+                <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
+                </svg>
+                Login
+            </a>
         </div>
     </nav>
 
@@ -68,6 +151,205 @@
     </div>
 
 
+    <section id="blog" class="container mx-auto p-6">
+        <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Découvrez Nos Offres Spéciales</h2>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="assets/img/img/Salmon Rice Bowls.jpeg" alt="Offre spéciale" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Offre Spéciale Pizza</h3>
+                        <p class="text-gray-600 mt-2">Profitez d'une pizza gratuite pour toute commande de plus de 30€.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="assets/img/img/Healthy Living!!.jpeg" alt="Nouvelle recette" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Nouvelle Recette</h3>
+                        <p class="text-gray-600 mt-2">Découvrez notre nouveau plat signature, disponible dès maintenant.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Happy Hour" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Happy Hour</h3>
+                        <p class="text-gray-600 mt-2">Venez profiter de nos boissons à moitié prix entre 17h et 19h.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Happy Hour" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Happy Hour</h3>
+                        <p class="text-gray-600 mt-2">Venez profiter de nos boissons à moitié prix entre 17h et 19h.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Happy Hour" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Happy Hour</h3>
+                        <p class="text-gray-600 mt-2">Venez profiter de nos boissons à moitié prix entre 17h et 19h.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <header class="bg-yellow-500 text-white text-center py-6 text-3xl font-bold shadow-lg">
+        MENU DISPONIBLE
+    </header>
+
+    <section class="container mx-auto p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Articles du menu -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/20-Minute Sausage Pasta Skillet (2).jpeg" alt="Pizza" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Pizza Margherita</h3>
+                    <p class="text-gray-600 mt-2">Tomates fraîches, mozzarella et basilic.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">80.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/@feedcookery _ YoFan.jpeg" alt="Burger" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Burger Gourmet</h3>
+                    <p class="text-gray-600 mt-2">Boeuf 150g, cheddar et sauce maison.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">200.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/Coconut Curry Shrimp Recipe – Easy, Flavorful & Spicy.jpeg" alt="Pâtes" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Pâtes Carbonara</h3>
+                    <p class="text-gray-600 mt-2">Crème, lardons, parmesan et œuf.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">20.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/Creamy Parmesan Beef with Rigatoni - Savory Comfort Food - Recipes by Clare.jpeg" alt="Steak" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Steak Frites</h3>
+                    <p class="text-gray-600 mt-2">Steak grillé avec frites maison.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">200.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Autres articles -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Salade" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Salade César</h3>
+                    <p class="text-gray-600 mt-2">Poulet, parmesan, croutons et sauce césar.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">70.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/Healthy Living!!.jpeg" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Sushi Mix</h3>
+                    <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">30.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/Healthy Living!!.jpeg" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Sushi Mix</h3>
+                    <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">50.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="assets/img/img/Healthy Living!!.jpeg" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Sushi Mix</h3>
+                    <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">20.000 GNF</span>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <header class="bg-yellow-500 text-white text-center py-6 text-3xl font-bold shadow-lg">
+        Découvrez Nos Services
+    </header>
+    
+    <section class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Service 1 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="assets/service/livraison.jpeg" alt="Service 1" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 1: Livraison à domicile</h3>
+                <p class="text-gray-700 mb-4">Profitez de notre service de livraison à domicile pour savourer nos plats délicieux où que vous soyez.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">En savoir plus</a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="assets/service/livraison.jpeg" alt="Service 2" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 2: Réservation en ligne</h3>
+                <p class="text-gray-700 mb-4">Réservez votre table facilement en ligne et assurez-vous de profiter de notre ambiance unique.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Réserver maintenant</a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="assets/service/livraisons.jpeg" alt="Service 3" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 3: Buffet à volonté</h3>
+                <p class="text-gray-700 mb-4">Savourez une variété de plats dans notre buffet à volonté, pour satisfaire toutes vos envies gastronomiques.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Voir le menu</a>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="assets/service/evenement.jpeg" alt="Service 4" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 4: Événements privés</h3>
+                <p class="text-gray-700 mb-4">Organisez vos événements privés dans notre espace confortable et raffiné, avec un service de qualité.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">En savoir plus</a>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="assets/service/livraison.jpeg" alt="Service 5" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 5: Cours de cuisine</h3>
+                <p class="text-gray-700 mb-4">Apprenez les secrets de notre cuisine avec nos cours pratiques animés par nos chefs expérimentés.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">S'inscrire maintenant</a>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="https://via.placeholder.com/300" alt="Service 6" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 6: Menu spécial du jour</h3>
+                <p class="text-gray-700 mb-4">Découvrez notre menu spécial du jour, une sélection de plats préparés avec des ingrédients frais et locaux.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Voir le menu</a>
+            </div>
+        </div>
+    </section>
     
 
     <!-- Section À Propos -->
@@ -194,80 +476,18 @@ document.querySelectorAll('.tab-link').forEach(function (tab) {
     });
 });
 
-/* Validation du formulaire de connexion
-document.getElementById('login-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-    let isValid = true;
+    </script>
 
-    // Validation de l'email
-    if (!email || !email.includes('@')) {
-        document.getElementById('login-email-error').textContent = 'Veuillez entrer un email valide.';
-        document.getElementById('login-email-error').style.display = 'block';
-        isValid = false;
-    } else {
-        document.getElementById('login-email-error').style.display = 'none';
-    }
-
-    // Validation du mot de passe
-    if (!password || password.length < 6) {
-        document.getElementById('login-password-error').textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
-        document.getElementById('login-password-error').style.display = 'block';
-        isValid = false;
-    } else {
-        document.getElementById('login-password-error').style.display = 'none';
-    }
+    <script>
+        document.getElementById("menu-btn").addEventListener("click", function() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
 
 
-    if (isValid) {
-        alert('Connexion réussie !');
-        document.getElementById('modal').style.display = 'none';
-    }
-});*/
-
-
-
-/* Validation du formulaire d'inscription
-document.getElementById('register-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = document.getElementById('register-email').value;
-    const password = document.getElementById('register-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    let isValid = true;
-
-    // Validation de l'email
-    if (!email || !email.includes('@')) {
-        document.getElementById('register-email-error').textContent = 'Veuillez entrer un email valide.';
-        document.getElementById('register-email-error').style.display = 'block';
-        isValid = false;
-    } else {
-        document.getElementById('register-email-error').style.display = 'none';
-    }
-
-    // Validation du mot de passe
-    if (!password || password.length < 6) {
-        document.getElementById('register-password-error').textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
-        document.getElementById('register-password-error').style.display = 'block';
-        isValid = false;
-    } else {
-        document.getElementById('register-password-error').style.display = 'none';
-    }
-
-    // Validation de la confirmation du mot de passe
-    if (password !== confirmPassword) {
-        document.getElementById('confirm-password-error').textContent = 'Les mots de passe ne correspondent pas.';
-        document.getElementById('confirm-password-error').style.display = 'block';
-        isValid = false;
-    } else {
-        document.getElementById('confirm-password-error').style.display = 'none';
-    }
-
-    if (isValid) {
-        alert('Inscription réussie !');
-        document.getElementById('modal').style.display = 'none';
-    }
-});*/
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>

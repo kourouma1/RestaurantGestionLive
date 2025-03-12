@@ -545,7 +545,10 @@ db.query(query, (err, results1) => {
 
 
 
-
+//===================connexion pour mobile=========================//
+serv.get('/mobile/login',(req,res)=>{
+    return res.status(200).render("pages/loginmobile",{message : " "})
+})
 
 
 
@@ -747,7 +750,7 @@ serv.use((req, res) => {
 
 
 
-serv.listen(8000, (err) => {
+serv.listen( 3001,(err) => {
     if (err) {
         console.log("erreur l'or du lancement du serveur !");
         

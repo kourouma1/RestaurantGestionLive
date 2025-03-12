@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion & Inscription</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-input {
+            border: 2px solid #ddd;
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 0.375rem;
+        }
+        .form-input:focus {
+            border-color: #f59e0b;
+            outline: none;
+        }
+        .form-button {
+            background-color: #f59e0b;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .form-button:hover {
+            background-color: #d97706;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Animation de transition entre les formulaires */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Spinner pour l'animation de chargement */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #f59e0b;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    
+    <header class="bg-yellow-500 text-white text-center py-6 text-3xl font-bold shadow-lg">
+        Connexion & Inscription
+    </header>
+    
+    <section class="container mx-auto p-6">
+        <div class="w-full max-w-md bg-white rounded-lg shadow-md p-8 mx-auto">
+            
+            <!-- Boutons pour changer de formulaire -->
+            <div class="flex justify-around mb-4">
+                <button id="show-login" class="text-yellow-500 font-bold py-2 px-4">Se connecter</button>
+                <button id="show-signup" class="text-yellow-500 font-bold py-2 px-4">S'inscrire</button>
+            </div>
+            
+            <!-- Animation de chargement -->
+            <div id="loading-spinner" class="flex justify-center items-center hidden mb-4">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Formulaire de Connexion -->
+            <div id="login-form" class="hidden">
+                <h2 class="text-2xl font-bold text-center mb-4">Connexion</h2>
+                <form method="POST" action="/login">
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-input" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-input" placeholder="Mot de passe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="form-button">Se connecter</button>
+                    </div>
+                    <div class="text-center mt-4">
+                        <span>Pas encore de compte ?</span> <a href="#" id="show-signup-link" class="text-yellow-500">S'inscrire</a>
+                    </div>
+                     <!-- Bouton Google Auth -->
+                     <div class="mt-4">
+                        <button id="google-login-btn" class="flex items-center justify-center form-button text-white bg-blue-500 hover:bg-blue-700">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-tXmJwvzVRqq3oGgC1rOhuMv8esNsbve9tw&s" alt="Google Logo" class="w-5 h-5 mr-2"> 
+                            Se connecter avec Google
+                        </button>
+                    
+                    </div>
+                </form>
+                <h4 class="text-danger"><%= message %></h4>
+            </div>
+
+            <!-- Formulaire d'Inscription -->
+            <div id="signup-form" class="hidden">
+                <h2 class="text-2xl font-bold text-center mb-4">Inscription</h2>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-input" placeholder="Nom d'utilisateur" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-input" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-input" placeholder="Mot de passe" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-button">S'inscrire</button>
+                    </div>
+                    <div class="text-center mt-4">
+                        <span>Déjà un compte ?</span> <a href="#" id="show-login-link" class="text-yellow-500">Se connecter</a>
+                    </div>
+
+                     <!-- Bouton Google Auth -->
+                     <div class="mt-4">
+                        <button id="google-login-btn" class="flex items-center justify-center form-button text-white bg-blue-500 hover:bg-blue-700">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-tXmJwvzVRqq3oGgC1rOhuMv8esNsbve9tw&s" alt="Google Logo" class="w-5 h-5 mr-2"> 
+                            Se connecter avec Google
+                        </button>
+                    
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    
+    <script>
+        // Gestion de l'affichage des formulaires
+        const showLoginBtn = document.getElementById("show-login");
+        const showSignupBtn = document.getElementById("show-signup");
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const showSignupLink = document.getElementById("show-signup-link");
+        const showLoginLink = document.getElementById("show-login-link");
+        const loadingSpinner = document.getElementById("loading-spinner");
+
+        // Afficher le formulaire de connexion et masquer l'inscription
+        showLoginBtn.addEventListener("click", () => {
+            loadingSpinner.classList.remove("hidden");
+            setTimeout(() => {
+                loginForm.classList.remove("hidden", "fade-in");
+                loginForm.classList.add("fade-in");
+                signupForm.classList.add("hidden");
+                loadingSpinner.classList.add("hidden");
+            }, 500);  // Simuler un léger délai pour l'animation de transition
+        });
+
+        // Afficher le formulaire d'inscription et masquer la connexion
+        showSignupBtn.addEventListener("click", () => {
+            loadingSpinner.classList.remove("hidden");
+            setTimeout(() => {
+                signupForm.classList.remove("hidden", "fade-in");
+                signupForm.classList.add("fade-in");
+                loginForm.classList.add("hidden");
+                loadingSpinner.classList.add("hidden");
+            }, 500);  // Simuler un léger délai pour l'animation de transition
+        });
+
+        // Afficher le formulaire d'inscription quand on clique sur "S'inscrire" dans la connexion
+        showSignupLink.addEventListener("click", () => {
+            loadingSpinner.classList.remove("hidden");
+            setTimeout(() => {
+                signupForm.classList.remove("hidden", "fade-in");
+                signupForm.classList.add("fade-in");
+                loginForm.classList.add("hidden");
+                loadingSpinner.classList.add("hidden");
+            }, 500);  // Simuler un léger délai pour l'animation de transition
+        });
+
+        // Afficher le formulaire de connexion quand on clique sur "Se connecter" dans l'inscription
+        showLoginLink.addEventListener("click", () => {
+            loadingSpinner.classList.remove("hidden");
+            setTimeout(() => {
+                loginForm.classList.remove("hidden", "fade-in");
+                loginForm.classList.add("fade-in");
+                signupForm.classList.add("hidden");
+                loadingSpinner.classList.add("hidden");
+            }, 500);  // Simuler un léger délai pour l'animation de transition
+        });
+
+        // Par défaut, afficher le formulaire de connexion
+        loginForm.classList.remove("hidden");
+        signupForm.classList.add("hidden");
+    </script>
+</body>
+</html>
