@@ -648,7 +648,7 @@ serv.post("/mail", async (req, res) => {
 
     try {
         await transporter.sendMail(mailOptions);
-        res.json({ success: true, message: "Email envoyé avec succès !" });
+        res.status(200).redirect("/");
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Erreur lors de l'envoi de l'email." });
