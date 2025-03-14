@@ -634,10 +634,7 @@ serv.get('/admin', (req, res) => {
 serv.post("/mail", async (req, res) => {
     const { nom, email, message } = req.body;
     console.log(req.body);
-    
-    
-    
-    
+     
 
     const mailOptions = {
         from: email,
