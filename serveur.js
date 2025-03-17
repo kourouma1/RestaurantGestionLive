@@ -589,7 +589,7 @@ serv.get('/admin', (req, res) => {
             cl.id ,
             cl.nom
         FROM commandes c
-        JOIN clients cl ON c.client_id  = cl.id
+        JOIN clients cl ON c.id  = cl.id
         ORDER BY c.date_commande DESC LIMIT 10;
     `
     const query2 = `
