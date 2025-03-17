@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="an">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commande</title>
+    <title>Restaurant TECK</title>
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/accueil.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .navbar {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+   
+    
+</head>
+<style>
+    .navbar {
         transition: background 0.3s ease-in-out;
     }
     .navbar.scrolled {
@@ -39,171 +47,493 @@
         width: 100%;
     }
 
-        .blog {
-            opacity: 0;
-            transform: translateX(-100px);
-            transition: all 0.8s ease-out;
+    .scroll-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+    .scroll-content {
+        display: inline-flex;
+        animation: scroll 20s linear infinite;
+    }
+    @keyframes scroll {
+        from { transform: translateX(100%); }
+        to { transform: translateX(-100%); 
+            
+        
         }
-        .blog.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    }
 
-        .submenu {
-          display: none;
-          opacity: 0;
-          transform: translateY(-10px);
-          transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-      .menu-item:hover .submenu {
-          display: block;
-          opacity: 1;
-          transform: translateY(0);
-      }
-    </style>
+    /* Animation pour les cartes de service */
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Animation pour l'effet hover */
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+
+    /* Animation personnalisée */
+    @keyframes pulse-green {
+        0%, 100% {
+            color: #10B981; /* Vert Tailwind (emerald-500) */
+        }
+        50% {
+            color: #34D399; /* Vert plus clair (emerald-400) */
+        }
+    }
+    .animate-pulse-green {
+        animation: pulse-green 2s infinite;
+    }
+
+</style>
 </head>
-<body class="bg-yellow-100 min-h-screen flex flex-col items-center py-10">
-
+<body class="bg-gray-100 text-gray-900">
 
     <nav class="fixed top-0 left-0 w-full bg-yellow-500 shadow-lg  z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16 items-center">
-              <div class="flex items-center">
-                  <a href="#" class=" text-white text-2xl font-bold">Mon Restaurant</a>
-              </div>
-              <div class="hidden md:flex space-x-6 items-center">
-                  <a href="#" class="text-white text-lg nav-link">Accueil</a>
-                  <a href="#menu" class="text-white text-lg nav-link">Menu</a>
-                  <div class="relative menu-item">
-                    <button class="text-white text-lg nav-link">Commande</button>
-                    <div class="absolute bg-white text-yellow-500 mt-2 rounded-lg shadow-lg submenu">
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Effectuer une commande</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Liste de vos commandes</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Historique</a>
-                    </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <a href="#" class=" text-white text-2xl font-bold">Restaurant TECHK</a>
                 </div>
-                <div class="relative menu-item">
-                    <button class="text-white text-lg nav-link">Réservation</button>
-                    <div class="absolute bg-white text-yellow-500 mt-2 rounded-lg shadow-lg submenu">
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Effectuer une réservation</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Réservations en cours</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Réservations effectuées</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Historique</a>
-                    </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#" class="text-white text-lg nav-link">Accueil</a>
+                    <a href="#menu" class="text-white text-lg nav-link">Menu</a>
+                    <a href="#service" class="text-white text-lg nav-link">Services</a>
+                    <button  onclick="toggleModal1()" class="text-white text-lg nav-link">Contact</button>
+                    <button onclick="toggleModal()"" class="bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
+                    <a href="/decon" class="flex items-center text-white text-lg nav-link" id="open-modal">
+                        <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
+                        </svg>
+                        SE DECONNECTER
+                    </a>
                 </div>
-                  <a href="#service" class="text-white text-lg nav-link">Services</a>
-                  <button  onclick="toggleModal1()" class="text-white text-lg nav-link">Contact</button>
-                  <button onclick="toggleModal()"" class="bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
-                  <button class="flex items-center text-white text-lg nav-link" id="open-modal">
-                      <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
-                      </svg>
-                      Se Deconnecter
-                  </button>
-                  <img src="https://via.placeholder.com/40" alt="Profil utilisateur" class="w-10 h-10 rounded-full border-2 border-white">
-              </div>
-              <div class="md:hidden flex items-center">
-                  <button id="menu-btn" class="text-white focus:outline-none">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                      </svg>
-                  </button>
-              </div>
-          </div>
-      </div>
-
-      <!-- Menu mobile -->
-      <div id="mobile-menu" class="hidden md:hidden bg-yellow-500 text-white p-4">
-          <a href="#" class="block py-2 nav-link">Accueil</a>
-          <a href="#menu" class="block py-2 nav-link">Menu</a>
-          <a href="#service" class="block py-2 nav-link">Service</a>
-          <div class="relative menu-item">
-            <button class="text-white text-lg nav-link">Commande</button>
-            <div class="absolute bg-white text-yellow-500 mt-2 rounded-lg shadow-lg submenu">
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Effectuer une commande</a>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Liste de vos commandes</a>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Historique</a>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="relative menu-item">
-            <button class="text-white text-lg nav-link">Réservation</button>
-            <div class="absolute bg-white text-yellow-500 mt-2 rounded-lg shadow-lg submenu">
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Effectuer une réservation</a>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Réservations en cours</a>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Réservations effectuées</a>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Historique</a>
-            </div>
-        </div>
-          <a onclick="toggleModal1()" href="#" class="block py-2 nav-link">Contact</a>
-          <button onclick="toggleModal()" class="w-full bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
-          <a href="/mobile/login" class="flex items-center text-white text-lg nav-link" id="open-modal">
-              <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
-              </svg>
-              Se Deconnecter
-          </a>
-      </div>
-  </nav>
 
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-yellow-500 text-white p-4">
+            <a href="#" class="block py-2 nav-link">Accueil</a>
+            <a href="#menu" onclick="controleMenu()" class="block py-2 nav-link">Menu</a>
+            <a href="#service" class="block py-2 nav-link">Service</a>
+            <a onclick="toggleModal1()" href="#" class="block py-2 nav-link">Contact</a>
+            <button onclick="toggleModal()" class="w-full bg-white text-yellow-500 px-4 py-2 rounded-lg hover:bg-gray-200 transition">Commander</button>
+            <a href="/decon" class="flex items-center text-white text-lg nav-link" >
+                <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7 7 0 1116.88 17.8M12 14v7m0 0l-3-3m3 3l3-3"></path>
+                </svg>
+                SE DECONNECTER
+            </a>
+        </div>
+    </nav>
 
-    <h1 class="text-3xl font-bold text-yellow-700 mb-6">Effectuer une Commande</h1>
-    <div class="w-11/12 max-w-6xl flex overflow-x-auto space-x-6 px-4">
-        <div class="blog bg-white p-4 rounded-lg shadow-md w-80 flex-shrink-0">
-            <img src="https://source.unsplash.com/300x200/?chicken" alt="Poulet Braisé" class="w-full h-40 object-cover rounded-md">
-            <h2 class="text-xl font-semibold text-yellow-600 mt-3">Poulet Braisé</h2>
-            <p class="text-gray-700">Servi avec des frites et une sauce spéciale.</p>
-            <button class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">Ajouter au Panier</button>
+    <!-- Section Hero avec vidéo en fond -->
+    <section class="hero">
+        <video autoplay muted loop id="background-video">
+            <source src="../assets/video/pub (1).mp4" type="video/mp4">
+            
+        </video>
+        <div class="content">
+            <h1 class="text-warning">Bienvenue Chez Restaurant TECHK</h1>
+            <p class="text-warning">Découvrez des saveurs uniques et des plats préparés avec amour.</p>
         </div>
-        <div class="blog bg-white p-4 rounded-lg shadow-md w-80 flex-shrink-0">
-            <img src="https://source.unsplash.com/300x200/?dessert" alt="Tarte aux Pommes" class="w-full h-40 object-cover rounded-md">
-            <h2 class="text-xl font-semibold text-yellow-600 mt-3">Tarte aux Pommes</h2>
-            <p class="text-gray-700">Accompagnée d'une boule de glace vanille.</p>
-            <button class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">Ajouter au Panier</button>
-        </div>
-        <div class="blog bg-white p-4 rounded-lg shadow-md w-80 flex-shrink-0">
-            <img src="https://source.unsplash.com/300x200/?juice" alt="Jus de Mangue" class="w-full h-40 object-cover rounded-md">
-            <h2 class="text-xl font-semibold text-yellow-600 mt-3">Jus de Mangue</h2>
-            <p class="text-gray-700">100% naturel et rafraîchissant.</p>
-            <button class="mt-3 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">Ajouter au Panier</button>
+    </section>
+
+    <!-- Carrousel de texte -->
+    <div class="carousel-container">
+        <div class="carousel-text">
+            <span>🍽️ Plats délicieux</span>
+            <span>🍷 Vins sélectionnés</span>
+            <span>🌟 Ambiance chaleureuse</span>
+            <span>🍰 Desserts maison</span>
         </div>
     </div>
-    <button class="mt-6 px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition">Passer la Commande</button>
+
+
+    <section id="blog" class="container mx-auto p-6">
+        <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Découvrez Nos Offres Spéciales</h2>
+        <div class="scroll-container">
+            <div class="scroll-content">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="../assets/img/img/Salmon Rice Bowls.jpeg" alt="Offre spéciale" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Offre Spéciale Pizza</h3>
+                        <p class="text-gray-600 mt-2">Profitez d'une pizza gratuite pour toute commande de plus de 30€.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="../assets/img/img/Healthy Living!!.jpeg" alt="Nouvelle recette" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Nouvelle Recette</h3>
+                        <p class="text-gray-600 mt-2">Découvrez notre nouveau plat signature, disponible dès maintenant.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="../assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Happy Hour" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Happy Hour</h3>
+                        <p class="text-gray-600 mt-2">Venez profiter de nos boissons à moitié prix entre 17h et 19h.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="../assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Happy Hour" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Happy Hour</h3>
+                        <p class="text-gray-600 mt-2">Venez profiter de nos boissons à moitié prix entre 17h et 19h.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 mx-4">
+                    <img src="../assets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Happy Hour" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Happy Hour</h3>
+                        <p class="text-gray-600 mt-2">Venez profiter de nos boissons à moitié prix entre 17h et 19h.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h1 id="menu"></h1><br><br>
+    <header class="bg-yellow-500 text-white text-center py-6 text-3xl font-bold shadow-lg" >
+        MENU DISPONIBLE
+    </header>
+
+    <section class="container mx-auto p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Articles du menu -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/20-Minute Sausage Pasta Skillet (2).jpeg" alt="Pizza" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Pizza Margherita</h3>
+                    <p class="text-gray-600 mt-2">Tomates fraîches, mozzarella et basilic.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">80.000 GNF</span>
+                        <a onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/@feedcookery _ YoFan.jpeg" alt="Burger" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Burger Gourmet</h3>
+                    <p class="text-gray-600 mt-2">Boeuf 150g, cheddar et sauce maison.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">200.000 GNF</span>
+                       <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/Coconut Curry Shrimp Recipe – Easy, Flavorful & Spicy.jpeg" alt="Pâtes" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Pâtes Carbonara</h3>
+                    <p class="text-gray-600 mt-2">Crème, lardons, parmesan et œuf.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">20.000 GNF</span>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/Creamy Parmesan Beef with Rigatoni - Savory Comfort Food - Recipes by Clare.jpeg" alt="Steak" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Steak Frites</h3>
+                    <p class="text-gray-600 mt-2">Steak grillé avec frites maison.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">200.000 GNF</span>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Autres articles -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../ssets/img/img/Creamy Low-Calorie Chicken Tikka Masala Recipe_ Indulge Guilt-Free!.jpeg" alt="Salade" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Salade César</h3>
+                    <p class="text-gray-600 mt-2">Poulet, parmesan, croutons et sauce césar.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">70.000 GNF</span>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                     </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/Healthy Living!!.jpeg" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Sushi Mix</h3>
+                    <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">30.000 GNF</span>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/Healthy Living!!.jpeg" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Sushi Mix</h3>
+                    <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">50.000 GNF</span>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                <img src="../assets/img/img/Healthy Living!!.jpeg" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">Sushi Mix</h3>
+                    <p class="text-gray-600 mt-2">Assortiment de sushis frais.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-yellow-500">20.000 GNF</span>
+                        <button onclick="toggleModal()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">Commander</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h1  id="service"></h1>
+    <br><br>
+
+    <header class="bg-yellow-500 text-white text-center py-6 text-3xl font-bold shadow-lg">
+        Découvrez Nos Services
+    </header>
+    
+    <section class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Service 1 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="../assets/service/livraison.jpeg" alt="Service 1" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 1: Livraison à domicile</h3>
+                <p class="text-gray-700 mb-4">Profitez de notre service de livraison à domicile pour savourer nos plats délicieux où que vous soyez.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">En savoir plus</a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="../assets/service/reservation.jpeg" alt="Service 2" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 2: Réservation en ligne</h3>
+                <p class="text-gray-700 mb-4">Réservez votre table facilement en ligne et assurez-vous de profiter de notre ambiance unique.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Réserver maintenant</a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="../assets/service/livraisons.jpeg" alt="Service 3" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 3: Buffet à volonté</h3>
+                <p class="text-gray-700 mb-4">Savourez une variété de plats dans notre buffet à volonté, pour satisfaire toutes vos envies gastronomiques.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Voir le menu</a>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="../assets/service/evenement.jpeg" alt="Service 4" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 4: Événements privés</h3>
+                <p class="text-gray-700 mb-4">Organisez vos événements privés dans notre espace confortable et raffiné, avec un service de qualité.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">En savoir plus</a>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="../assets/service/livraison.jpeg" alt="Service 5" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 5: Cours de cuisine</h3>
+                <p class="text-gray-700 mb-4">Apprenez les secrets de notre cuisine avec nos cours pratiques animés par nos chefs expérimentés.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">S'inscrire maintenant</a>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="fade-in-up transform transition duration-1000 ease-in-out card bg-white rounded-lg shadow-lg p-6">
+                <img src="../assets/service/menu.jpeg" alt="Service 6" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">Service 6: Menu spécial du jour</h3>
+                <p class="text-gray-700 mb-4">Découvrez notre menu spécial du jour, une sélection de plats préparés avec des ingrédients frais et locaux.</p>
+                <a href="#" class="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">Voir le menu</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform transition-all scale-95 opacity-0 relative" id="modalContent">
+            <button onclick="toggleModal()" class="absolute top-2 right-2 text-red-500 text-lg">✖</button>
+            <h2 class="text-xl font-bold mb-4 text-yellow-600 text-center">Nouvelle Commande</h2>
+            <form>
+                <label class="block text-sm font-medium">Nom</label>
+                <input type="text" class="w-full p-2 border rounded-md mb-3" placeholder="Votre nom">
+                
+                <label class="block text-sm font-medium">Email</label>
+                <input type="email" class="w-full p-2 border rounded-md mb-3" placeholder="Votre email">
+                
+                <label class="block text-sm font-medium">Numéro</label>
+                <input type="tel" class="w-full p-2 border rounded-md mb-3" placeholder="Votre numéro">
+                
+                <label class="block text-sm font-medium">Plat</label>
+                <select class="w-full p-2 border rounded-md mb-3">
+                    <option>Pizza</option>
+                    <option>Burger</option>
+                    <option>Salade</option>
+                </select>
+                
+                <label class="block text-sm font-medium">Quantité</label>
+                <input type="number" class="w-full p-2 border rounded-md mb-3" min="1" value="1">
+                
+                <label class="block text-sm font-medium">Méthode de paiement</label>
+                <select class="w-full p-2 border rounded-md mb-3">
+                    <option>Carte bancaire</option>
+                    <option>PayPal</option>
+                    <option>Mobile Money</option>
+                </select>
+                
+                <label class="block text-sm font-medium">Numéro de compte</label>
+                <input type="text" class="w-full p-2 border rounded-md mb-3" placeholder="Votre numéro de compte">
+                
+                <button type="submit" class="w-full bg-orange-300 text-white py-2 rounded-md hover:bg-yellow-700 transition">Valider la commande</button>
+            </form>
+        </div>
+    </div>
+
+
+
+     <!-- Modal pour contacter -->
+     <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform transition-all scale-95 opacity-0 relative" id="modalContent1">
+            <button onclick="toggleModal1()" class="absolute top-2 right-2 text-red-500 text-lg">✖</button>
+            <h2 class="text-xl font-bold mb-4 text-yellow-600 text-center">Nous Contacter</h2>
+            <div class="text-4xl font-bold animate-pulse-green texte-vert" id="response"></div> <!-- Zone d'affichage de la réponse -->
+            <form method="post" action="/mail" id="contact-form">
+                <label class="block text-sm font-medium">Nom</label>
+                <input name="nom" type="text" class="w-full p-2 border rounded-md mb-3" placeholder="Votre nom">
+                
+                <label class="block text-sm font-medium">Email</label>
+                <input name="email" type="email" class="w-full p-2 border rounded-md mb-3" placeholder="Votre email">
+                
+                <label class="block text-sm font-medium">Message</label>
+                <textarea name="message" class="w-full p-2 border rounded-md mb-3" rows="4" placeholder="Votre message"></textarea>
+                
+                <button type="submit" class="w-full bg-yellow-600 text-white py-2 rounded-md hover:bg-yellow-700 transition">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const blogs = document.querySelectorAll(".blog");
-            blogs.forEach((blog, index) => {
+        function toggleModal1() {
+            const modal = document.getElementById('contactModal');
+            const content = document.getElementById('modalContent1');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
                 setTimeout(() => {
-                    blog.classList.add("show");
-                }, index * 300);
-            });
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            } else {
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+    </script>
+
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('orderModal');
+            const content = document.getElementById('modalContent');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            } else {
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+    </script>
+
+
+    <script > 
+        // Ajouter une classe à la barre de navigation lors du scroll
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+
+
+// Ouvrir le modal
+document.getElementById('open-modal').addEventListener('click', function () {
+    document.getElementById('modal').style.display = 'flex';
+});
+
+// Fermer le modal
+document.querySelector('.close-modal').addEventListener('click', function () {
+    document.getElementById('modal').style.display = 'none';
+});
+
+// Basculer entre les onglets
+document.querySelectorAll('.tab-link').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+        // Retirer la classe active de tous les onglets
+        document.querySelectorAll('.tab-link').forEach(function (t) {
+            t.classList.remove('active');
         });
 
-        // Basculer entre les onglets
-document.querySelectorAll('.tab-link').forEach(function (tab) {
-  tab.addEventListener('click', function () {
-      // Retirer la classe active de tous les onglets
-      document.querySelectorAll('.tab-link').forEach(function (t) {
-          t.classList.remove('active');
-      });
+        // Ajouter la classe active à l'onglet cliqué
+        tab.classList.add('active');
 
-      // Ajouter la classe active à l'onglet cliqué
-      tab.classList.add('active');
+        // Masquer tous les contenus d'onglets
+        document.querySelectorAll('.tab-content').forEach(function (content) {
+            content.classList.remove('active');
+        });
 
-      // Masquer tous les contenus d'onglets
-      document.querySelectorAll('.tab-content').forEach(function (content) {
-          content.classList.remove('active');
-      });
-
-      // Afficher le contenu de l'onglet cliqué
-      const target = tab.getAttribute('data-tab');
-      document.getElementById(target + '-form').classList.add('active');
-  });
+        // Afficher le contenu de l'onglet cliqué
+        const target = tab.getAttribute('data-tab');
+        document.getElementById(target + '-form').classList.add('active');
+    });
 });
 
-document.getElementById("menu-btn").addEventListener("click", function() {
-  document.getElementById("mobile-menu").classList.toggle("hidden");
-});
+    </script>
+
+    <script>
+        document.getElementById("menu-btn").addEventListener("click", function() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+       
+                  
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
